@@ -4,7 +4,10 @@ import gzip
 import json
 from torch_geometric.data import Data, Dataset
 import pickle
+from torch_geometric.data.data import DataEdgeAttr, DataTensorAttr # Añade DataTensorAttr aquí
 
+# Registramos todas las clases necesarias de una vez
+torch.serialization.add_safe_globals([Data, DataEdgeAttr, DataTensorAttr])
 
 class MyOwnDataset(Dataset):
 	def __init__(self, root, transform=None, pre_transform=None):
@@ -28,7 +31,7 @@ class MyOwnDataset(Dataset):
 		return len(self.processed_file_names)
 
 	def get(self, idx):
-		data = torch.load(os.path.join(self.processed_dir, self.processed_file_names[idx]))
+		data = torch.load(os.path.join(self.processed_dir, self.processed_file_names[idx]), weights_only=False)
 
 		reverse = data.edge_index.index_select(0, torch.LongTensor([1, 0]))
 		data.edge_index = torch.cat([data.edge_index, reverse], dim=1)

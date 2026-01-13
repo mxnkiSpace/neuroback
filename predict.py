@@ -12,7 +12,7 @@ import tarfile
 
 
 def predict_single(pt_dir_path, pt_file, model_path, res_dir_path, is_cuda=True):
-	data = torch.load(os.path.join(pt_dir_path, pt_file))
+	data = torch.load(os.path.join(pt_dir_path, pt_file), weights_only=False)
 
 	reverse = data.edge_index.index_select(0, torch.LongTensor([1, 0]))
 	data.edge_index = torch.cat([data.edge_index, reverse], dim=1)
