@@ -46,6 +46,6 @@ echo "Finalizando configuracion..."
 rm *.tar.gz
 
 # Creamos un enlace para que el código vea la carpeta 'data' de scratch como si fuera local
-ln -sfn $DATA_DIR $REPO_DIR/data_scratch
+ln -sfn $DATA_DIR $REPO_DIR/data
 
 echo "TODO LISTO. Los datos están en $DATA_DIR y vinculados a $REPO_DIR/data_scratch"
