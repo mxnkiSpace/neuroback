@@ -390,6 +390,6 @@ if __name__ == '__main__':
         if not os.path.isdir(pt_dir_path):
             os.makedirs(pt_dir_path)
             os.makedirs("./data/pt/" + sys.argv[1] + "/raw")
-        gen_pt(cnf_dir_path, pt_dir_path, n_cpu=1)
+        gen_pt(cnf_dir_path, pt_dir_path, n_cpu=20)
     else:
         print("ERROR: cnf directory name is missing! Please rerun this program with the directory name.")
