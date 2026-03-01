@@ -91,17 +91,16 @@ def gen_pt(cnf_dir_path, pt_dir_path, n_cpu=1):
 
 
 def gen_pt_single(arg_lst):
-    cnf_dir_path, cnf_name, pt_dir_path = arg_lst[0], arg_lst[1], arg_lst[2]
-    cnf_path = cnf_dir_path + "/" + cnf_name
+
+    cnf_dir_path, cnf_name, pt_dir_path, backbone_dir_path = arg_lst[0], arg_lst[1], arg_lst[2], arg_lst[3]
+    cnf_path = os.path.join(cnf_dir_path, cnf_name)
 
     backbone_name = cnf_name + ".backbone.xz"
-    backbone_dir_path = "./data/backbone/" + \
-                        cnf_dir_path.split("/")[-1]
-    backbone_path = backbone_dir_path + "/" + backbone_name
+    backbone_path = os.path.join(backbone_dir_path, backbone_name)
 
     if not os.path.isfile(backbone_path):
         backbone_name_sec = ".".join(cnf_name.split(".")[:-1]) + ".backbone.xz"
-        backbone_path = backbone_dir_path + "/" + backbone_name_sec
+        backbone_path = os.path.join(backbone_dir_path, backbone_name_sec)
 
     cnf_path = cnf_dir_path + "/" + cnf_name
     dc_cnf_path = ""
@@ -384,12 +383,36 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
 
 
 if __name__ == '__main__':
-    cnf_dir_path = "./data/cnf/" + sys.argv[1]
-    if os.path.isdir(cnf_dir_path):
-        pt_dir_path = "./data/pt/" + sys.argv[1] + "/processed"
-        if not os.path.isdir(pt_dir_path):
-            os.makedirs(pt_dir_path)
-            os.makedirs("./data/pt/" + sys.argv[1] + "/raw")
-        gen_pt(cnf_dir_path, pt_dir_path, n_cpu=20)
-    else:
-        print("ERROR: cnf directory name is missing! Please rerun this program with the directory name.")
+    # Uso esperado: python graph.py <modo> <input_dir> <output_dir> <batch_file> <backbone_dir>
+    if len(sys.argv) < 6:
+        print("Error: Faltan argumentos.")
+        print("Uso: python graph.py <modo> <input_dir> <output_dir> <batch_file> <backbone_dir>")
+        sys.exit(1)
+
+    mode = sys.argv[1]        # pretrain / finetune / validation
+    input_base = sys.argv[2]  # Carpeta de entrada en /tmp
+    output_base = sys.argv[3] # Carpeta de salida en /tmp
+    batch_file = sys.argv[4]  # Lista de archivos .txt
+    bb_dir = sys.argv[5]      # Carpeta de backbones en /tmp
+
+    with open(batch_file, 'r') as f:
+        target_files = [line.strip() for line in f if line.strip()]
+
+    pt_dir_path = os.path.join(output_base, "processed")
+    if not os.path.isdir(pt_dir_path):
+        os.makedirs(pt_dir_path, exist_ok=True)
+
+    task_lst = []
+    for cnf_name in target_files:
+        cnf_path = os.path.join(input_base, cnf_name)
+        if os.path.isfile(cnf_path):
+            task_lst.append([input_base, cnf_name, pt_dir_path, bb_dir])
+    
+    print(f"[{mode.upper()}] Procesando batch {batch_file} con {len(task_lst)} archivos...")
+    
+    with Pool(20) as p: 
+        with tqdm(total=len(task_lst)) as pbar:
+            for _ in p.imap_unordered(gen_pt_single, task_lst):
+                pbar.update()
+
+    print(f"Batch {batch_file} finalizado correctamente.")

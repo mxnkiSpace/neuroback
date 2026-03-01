@@ -20,8 +20,28 @@ Debe correrse en un nodo con acceso a internet
 chmod +x setup_neuroback.sh
 ./setup_neuroback.sh
 ```
+## Generacion de Batches
+```bash
+chmod +x batch_generation.sh
+./batch_generation.sh
+```
+## Prueba
+
+```bash
+sbatch --array=0 job_generate_graphs.sh pretrain
+```
 
 ## Generación de Gráfos
+### Grafos pretrain
 ```bash
-sbatch job_generate_graphs.sh
+sbatch --array=1-23 job_generate_graphs.sh pretrain
+```
+
+### Grafos finetuning
+```bash
+sbatch --array=0-3 job_generate_graphs.sh finetune
+```
+### Grafos validation
+```bash
+sbatch --array=0-0 job_generate_graphs.sh validation
 ```
