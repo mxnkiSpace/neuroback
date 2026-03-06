@@ -82,3 +82,5 @@ rsync -a $LOCAL_TMP/output/processed/ "$DATA_DIR/pt/$SET_TYPE/processed/"
 rm -rf $LOCAL_TMP
 
 echo "#=== Tarea completada ===#"
+
+##Pruebaaaa
