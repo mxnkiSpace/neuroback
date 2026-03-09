@@ -157,7 +157,7 @@ def gen_pt_single(arg_lst):
             tmp_dir_path = "/".join(pt_dir_path.split("/")[:-1]) + "/tmp"
             print(f"temporarily save to {tmp_dir_path}")
             if not os.path.isdir(tmp_dir_path):
-                os.makedirs(tmp_dir_path)
+                os.makedirs(tmp_dir_path, exist_ok=True)
             tmp_path = tmp_dir_path + "/" + cnf_name + f".c-{i}.pt"
             torch.save(data, tmp_path)
 
