@@ -66,29 +66,6 @@ class DisJointSets:
         return False
 
 
-def gen_pt(cnf_dir_path, pt_dir_path, n_cpu=1):
-
-    if not os.path.isdir(pt_dir_path):
-        os.makedirs(pt_dir_path)
-
-    task_lst = []
-    for cnf_name in sorted(os.listdir(cnf_dir_path)):
-        cnf_path = cnf_dir_path + "/" + cnf_name
-        if os.path.isfile(cnf_path):
-            if (cnf_path.endswith(".xz") or \
-                cnf_path.endswith(".bz2") or \
-                cnf_path.endswith(".lzma") or \
-                cnf_path.endswith(".gz")) and \
-                not os.path.isfile(pt_dir_path + "/" + cnf_name + ".c-0.pt"):
-                task_lst.append([cnf_dir_path, cnf_name, pt_dir_path])
-    
-    with Pool(n_cpu) as p:
-        with tqdm(total=len(task_lst)) as pbar:
-            for i, _ in enumerate(p.imap_unordered(gen_pt_single, task_lst)):
-                pbar.update()
-    
-    print("Parallel Extraction Finished")
-
 
 def gen_pt_single(arg_lst):
 

@@ -1,500 +1,500 @@
-dual	./d_cnf_ft/d_prime2209-88.cnf.xz
-dual	./d_cnf_ft/d_smtlib-qfbv-aigs-innfeed_innfeed_vc36608-tseitin.cnf.xz
-dual	./d_cnf_ft/d_UR-10-5p1.cnf.xz
-dual	./d_cnf_ft/d_prime2209-87.cnf.xz
-dual	./d_cnf_ft/d_2cf177493f485906510321213cfdc994-si2-b03m-m400-03.cnf.xz
-dual	./d_cnf_ft/d_prime2209-86.cnf.xz
-dual	./d_cnf_ft/d_prime2209-85.cnf.xz
-dual	./d_cnf_ft/d_atco_enc2_opt1_05_21.cnf.xz
-orig	./cnf_ft/705fa7d68c47bb31cfc3f23735f36785-sted1_0x0-330.cnf.xz
-dual	./d_cnf_ft/d_servers_slapd_a_vc149923.cnf.xz
-orig	./cnf_ft/instance_n8_i8_pp_ci_ce.cnf.xz
-dual	./d_cnf_ft/d_instance_n8_i8_pp_ci_ce.cnf.xz
-orig	./cnf_ft/g2-slp-synthesis-aes-top30.cnf.xz
-dual	./d_cnf_ft/d_instance_n8_i8_pp.cnf.xz
-dual	./d_cnf_ft/d_prime2209-83.cnf.xz
-orig	./cnf_ft/instance_n8_i8_pp.cnf.xz
-dual	./d_cnf_ft/d_rnd-v25-e81-k9.cnf.xz
-dual	./d_cnf_ft/d_prime2209-84.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-10.cnf.xz
-dual	./d_cnf_ft/d_AProVE11-09.cnf.xz
-dual	./d_cnf_ft/d_slp-synthesis-aes-top28.cnf.xz
-dual	./d_cnf_ft/d_prime2209-82.cnf.xz
-orig	./cnf_ft/AProVE09-10.cnf.xz
-dual	./d_cnf_ft/d_snw_13_9_preOptEncpre.cnf.xz
-dual	./d_cnf_ft/d_prime2209-81.cnf.xz
-dual	./d_cnf_ft/d_prime2209-79.cnf.xz
-orig	./cnf_ft/ibm-2004-04-k100.cnf.xz
-dual	./d_cnf_ft/d_AProVE11-15.cnf.xz
-dual	./d_cnf_ft/d_prime2209-80.cnf.xz
-orig	./cnf_ft/ibm-2004-06-k90.cnf.xz
-dual	./d_cnf_ft/d_prime2209-78.cnf.xz
-dual	./d_cnf_ft/d_prime2209-77.cnf.xz
-dual	./d_cnf_ft/d_prime2209-76.cnf.xz
-dual	./d_cnf_ft/d_cms-scheel-md5-families-r24-c8-p0-3-5-6-14-16-18-19-sc2018.cnf.xz
-orig	./cnf_ft/cms-scheel-md5-families-r24-c8-p0-3-5-6-14-16-18-19-sc2018.cnf.xz
-dual	./d_cnf_ft/d_prime2209-75.cnf.xz
-dual	./d_cnf_ft/d_itox_vc1044.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-24.cnf.xz
-dual	./d_cnf_ft/d_aaai10-planning-ipc5-pathways-17-step21.cnf.xz
-dual	./d_cnf_ft/d_prime2209-74.cnf.xz
-dual	./d_cnf_ft/d_2c4c2d3cedaef991b10eef7a54c0d920-less-cy-caa.rules.6-4.cnf.xz
-orig	./cnf_ft/2c4c2d3cedaef991b10eef7a54c0d920-less-cy-caa.rules.6-4.cnf.xz
-dual	./d_cnf_ft/d_1f49f37f051af218337c654f120cf4d0-ex039_33.cnf.xz
-dual	./d_cnf_ft/d_prime2209-73.cnf.xz
-dual	./d_cnf_ft/d_itox_vc1033.cnf.xz
-dual	./d_cnf_ft/d_prime2209-72.cnf.xz
-dual	./d_cnf_ft/d_clauses-2.cnf.xz
-orig	./cnf_ft/UR-10-5p1.cnf.xz
-orig	./cnf_ft/AProVE09-24.cnf.xz
-dual	./d_cnf_ft/d_slp-synthesis-aes-top27.cnf.xz
-dual	./d_cnf_ft/d_prime2209-70.cnf.xz
-dual	./d_cnf_ft/d_prime2209-71.cnf.xz
-dual	./d_cnf_ft/d_md5_48_3.cnf.xz
-dual	./d_cnf_ft/d_prime2209-69.cnf.xz
-dual	./d_cnf_ft/d_g2-slp-synthesis-aes-top26.cnf.xz
-dual	./d_cnf_ft/d_itox_vc909.cnf.xz
-dual	./d_cnf_ft/d_md5_48_4.cnf.xz
-dual	./d_cnf_ft/d_prime2209-68.cnf.xz
-orig	./cnf_ft/1f49f37f051af218337c654f120cf4d0-ex039_33.cnf.xz
-dual	./d_cnf_ft/d_md5_47_2.cnf.xz
-dual	./d_cnf_ft/d_md5_47_4.cnf.xz
-dual	./d_cnf_ft/d_mizh-md5-47-3.cnf.xz
-dual	./d_cnf_ft/d_mizh-md5-47-5.cnf.xz
-dual	./d_cnf_ft/d_prime2209-67.cnf.xz
-dual	./d_cnf_ft/d_md5_47_1.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-03.cnf.xz
-dual	./d_cnf_ft/d_rnd-v25-e13-k3.cnf.xz
-dual	./d_cnf_ft/d_pb_200_03_lb_03.cnf.xz
-dual	./d_cnf_ft/d_prime2209-65.cnf.xz
-dual	./d_cnf_ft/d_slp-synthesis-aes-top25.cnf.xz
-orig	./cnf_ft/g2-slp-synthesis-aes-top26.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006427000-10-10-36-SUM-sat.cnf.xz
-orig	./cnf_ft/g2-mizh-md5-48-5.cnf.xz
-dual	./d_cnf_ft/d_g2-mizh-md5-48-5.cnf.xz
-orig	./cnf_ft/mizh-md5-48-2.cnf.xz
-orig	./cnf_ft/QuasiGroup-4-12_c18.cnf.xz
-dual	./d_cnf_ft/d_QuasiGroup-4-12_c18.cnf.xz
-dual	./d_cnf_ft/d_mizh-md5-48-2.cnf.xz
-orig	./cnf_ft/AProVE09-03.cnf.xz
-dual	./d_cnf_ft/d_prime2209-64.cnf.xz
-dual	./d_cnf_ft/d_een-tip-sat-nusmv-tt5.B.cnf.xz
-dual	./d_cnf_ft/d_g2-slp-synthesis-aes-top24.cnf.xz
-dual	./d_cnf_ft/d_miza-sr06-md5-48-01.cnf.xz
-dual	./d_cnf_ft/d_een-tip-sat-nusmv-t5.B.cnf.xz
-dual	./d_cnf_ft/d_E04F20.cnf.xz
-orig	./cnf_ft/b407c25675c930cbb6bcc29d1eb8dd21-less-cy-caa.rules.4-9.cnf.xz
-dual	./d_cnf_ft/d_b407c25675c930cbb6bcc29d1eb8dd21-less-cy-caa.rules.4-9.cnf.xz
-dual	./d_cnf_ft/d_IBM_FV_2004_rule_batch_01_SAT_dat.k95.cnf.xz
-orig	./cnf_ft/een-tip-sat-nusmv-tt5.B.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006493326-10-10-35-SUM-sat.cnf.xz
-dual	./d_cnf_ft/d_IBM_FV_2004_rule_batch_01_SAT_dat.k100.cnf.xz
-orig	./cnf_ft/een-tip-sat-nusmv-t5.B.cnf.xz
-dual	./d_cnf_ft/d_aaai10-planning-ipc5-rovers-18-step12.cnf.xz
-dual	./d_cnf_ft/d_instance_n7_i8_pp.cnf.xz
-dual	./d_cnf_ft/d_emptyroom-4-h22-sat.cnf.xz
-orig	./cnf_ft/instance_n7_i8_pp.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_27.cnf.xz
-orig	./cnf_ft/g2-slp-synthesis-aes-top24.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006148277-10-10-34-SUM-sat.cnf.xz
-dual	./d_cnf_ft/d_E02F20.cnf.xz
-dual	./d_cnf_ft/d_sv-comp19_prop-reachsafety.triangular-longer_false-unreach-call.i-witness.cnf.xz
-orig	./cnf_ft/sv-comp19_prop-reachsafety.triangular-longer_false-unreach-call.i-witness.cnf.xz
-dual	./d_cnf_ft/d_simon03:sat02bis:cnt10.used-as.sat04-356.cnf.xz
-dual	./d_cnf_ft/d_sha0_36_5.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-36-4.cnf.xz
-orig	./cnf_ft/E02F20.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-36-2.cnf.xz
-orig	./cnf_ft/pb_200_03_lb_03.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-35-5.cnf.xz
-dual	./d_cnf_ft/d_ibm-2004-03-k70.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-35-3.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-35-2.cnf.xz
-dual	./d_cnf_ft/d_mizh-sha0-35-4.cnf.xz
-dual	./d_cnf_ft/d_preimage_80r_495m_160h_seed_379.cnf.xz
-dual	./d_cnf_ft/d_AProVE11-12.cnf.xz
-dual	./d_cnf_ft/d_sha0_35_1.cnf.xz
-dual	./d_cnf_ft/d_E05F20.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006493326-10-10-35-OR-sat.cnf.xz
-dual	./d_cnf_ft/d_atco_enc1_opt1_10_21.cnf.xz
-dual	./d_cnf_ft/d_83c4a55772eb377fd79b42d8510db31f-ecarev-110-1031-23-40-5.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006427000-10-10-35-OR-sat.cnf.xz
-dual	./d_cnf_ft/d_Eternity-10-05_c18.cnf.xz
-dual	./d_cnf_ft/d_jkkk-random-132906006204477-10-10-35-OR-sat.cnf.xz
-dual	./d_cnf_ft/d_instance_n7_i7_pp_ci_ce.cnf.xz
-dual	./d_cnf_ft/d_atco_enc1_opt1_10_15.cnf.xz
-dual	./d_cnf_ft/d_d7549284b74347abcdabaafb7b423249-ecarev-110-1031-23-40-2.cnf.xz
-dual	./d_cnf_ft/d_abb313GPIA-9-tr.used-as.sat04-321.cnf.xz
-dual	./d_cnf_ft/d_d00229433c23570f6e1c4147ec46fdf2-ecarev-110-1031-23-40-1.cnf.xz
-orig	./cnf_ft/Eternity-10-05_c18.cnf.xz
-orig	./cnf_ft/atco_enc1_opt1_10_15.cnf.xz
-dual	./d_cnf_ft/d_cc813d033d2b735cf872a7568eacda24-ecarev-110-1031-23-40-8.cnf.xz
-dual	./d_cnf_ft/d_6296e098cc09de8bb7ce12138c2a77c8-ecarev-110-1031-23-40-6.cnf.xz
-dual	./d_cnf_ft/d_6a5b9cc4d0ab64ea234befc27b6a431b-ecarev-110-1031-23-40-7.cnf.xz
-dual	./d_cnf_ft/d_sha0_36_3.cnf.xz
-orig	./cnf_ft/mp1-blockpuzzle_9x9_s7_free9.cnf.xz
-dual	./d_cnf_ft/d_sha0_36_1.cnf.xz
-orig	./cnf_ft/ibm-2004-03-k70.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_9.cnf.xz
-orig	./cnf_ft/instance_n7_i7_pp_ci_ce.cnf.xz
-dual	./d_cnf_ft/d_instance_n7_i7_pp.cnf.xz
-orig	./cnf_ft/instance_n7_i7_pp.cnf.xz
-orig	./cnf_ft/mizh-sha0-35-4.cnf.xz
-dual	./d_cnf_ft/d_ibm-2004-01-k90.cnf.xz
-orig	./cnf_ft/preimage_80r_495m_160h_seed_379.cnf.xz
-orig	./cnf_ft/preimage_80r_491m_160h_seed_391.cnf.xz
-dual	./d_cnf_ft/d_mp1-blockpuzzle_9x9_s7_free9.cnf.xz
-dual	./d_cnf_ft/d_preimage_80r_491m_160h_seed_391.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-25.cnf.xz
-dual	./d_cnf_ft/d_sat-strips-gripper-12t23.sat05-1144.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_atco_enc2_opt1_10_21.cnf.xz
-dual	./d_cnf_ft/d_ibm-2004-3_02_3-k95.cnf.xz
-dual	./d_cnf_ft/d_mp1-blockpuzzle_9x9_s1_free10.cnf.xz
-orig	./cnf_ft/d7549284b74347abcdabaafb7b423249-ecarev-110-1031-23-40-2.cnf.xz
-orig	./cnf_ft/6a5b9cc4d0ab64ea234befc27b6a431b-ecarev-110-1031-23-40-7.cnf.xz
-orig	./cnf_ft/83c4a55772eb377fd79b42d8510db31f-ecarev-110-1031-23-40-5.cnf.xz
-orig	./cnf_ft/6296e098cc09de8bb7ce12138c2a77c8-ecarev-110-1031-23-40-6.cnf.xz
-orig	./cnf_ft/cc813d033d2b735cf872a7568eacda24-ecarev-110-1031-23-40-8.cnf.xz
-orig	./cnf_ft/d00229433c23570f6e1c4147ec46fdf2-ecarev-110-1031-23-40-1.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l43_lambda.cnf.xz
-orig	./cnf_ft/mp1-blockpuzzle_9x9_s1_free10.cnf.xz
-dual	./d_cnf_ft/d_f746dae2050dd4aa48bcd53e8bd897b4-ex065_25.cnf.xz
-orig	./cnf_ft/f746dae2050dd4aa48bcd53e8bd897b4-ex065_25.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_38.cnf.xz
-dual	./d_cnf_ft/d_test_v3_r3_vr10_c1_s24300.smt2-stp212.cnf.xz
-orig	./cnf_ft/AProVE09-25.cnf.xz
-orig	./cnf_ft/ibm-2004-3_02_3-k95.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l42_lambda.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_11.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-19.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l41_lambda.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l40_lambda.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-20.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#22_24.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#20_24.cnf.xz
-orig	./cnf_ft/q_query_3_l43_lambda.cnf.xz
-dual	./d_cnf_ft/d_mod3block_3vars_9gates_restr.cnf.xz
-orig	./cnf_ft/AProVE09-19.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#24_24.cnf.xz
-orig	./cnf_ft/q_query_3_l42_lambda.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l39_lambda.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-17.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l38_lambda.cnf.xz
-orig	./cnf_ft/q_query_3_l41_lambda.cnf.xz
-orig	./cnf_ft/mrpp_8x8#24_24.cnf.xz
-dual	./d_cnf_ft/d_ae1297b45c60929765a002a59e58ca85-cms-scheel-md5-families-r24-c4-p1-3-4-16.cnf.xz
-dual	./d_cnf_ft/d_ab045d95555fad4b4156c7083fa66977-cms-scheel-md5-families-r24-c5-p2-7-8-15-19.cnf.xz
-orig	./cnf_ft/5ac0262a6f6ff0b1c7ea0713f534645c-cms-scheel-md5-families-r24-c7-p1-5-6-12-16-18-19.cnf.xz
-dual	./d_cnf_ft/d_q_query_3_l37_lambda.cnf.xz
-dual	./d_cnf_ft/d_0216f9d35f2b695b904fffb312e3e611-cms-scheel-md5-families-r24-c11-p1-4-6-9-10-11-13-15-17-18-19.cnf.xz
-dual	./d_cnf_ft/d_5ac0262a6f6ff0b1c7ea0713f534645c-cms-scheel-md5-families-r24-c7-p1-5-6-12-16-18-19.cnf.xz
-orig	./cnf_ft/0216f9d35f2b695b904fffb312e3e611-cms-scheel-md5-families-r24-c11-p1-4-6-9-10-11-13-15-17-18-19.cnf.xz
-orig	./cnf_ft/ae1297b45c60929765a002a59e58ca85-cms-scheel-md5-families-r24-c4-p1-3-4-16.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_29.cnf.xz
-orig	./cnf_ft/ab045d95555fad4b4156c7083fa66977-cms-scheel-md5-families-r24-c5-p2-7-8-15-19.cnf.xz
-orig	./cnf_ft/q_query_3_l40_lambda.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-12.cnf.xz
-orig	./cnf_ft/AProVE09-17.cnf.xz
-dual	./d_cnf_ft/d_E04F19.cnf.xz
-orig	./cnf_ft/q_query_3_l39_lambda.cnf.xz
-orig	./cnf_ft/mod3block_3vars_9gates_restr.cnf.xz
-orig	./cnf_ft/AProVE09-12.cnf.xz
-orig	./cnf_ft/q_query_3_l38_lambda.cnf.xz
-orig	./cnf_ft/q_query_3_l37_lambda.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#18_20.cnf.xz
-dual	./d_cnf_ft/d_e2_1.c.smt2-stp212.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-21.cnf.xz
-dual	./d_cnf_ft/d_mp1-qpr-bmp280-driver-5.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#20_20.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#22_20.cnf.xz
-orig	./cnf_ft/mp1-qpr-bmp280-driver-5.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#24_20.cnf.xz
-dual	./d_cnf_ft/d_mp1-qpr-bmp280-driver-14.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_3.cnf.xz
-dual	./d_cnf_ft/d_ibm-2004-29-k55.cnf.xz
-orig	./cnf_ft/mp1-qpr-bmp280-driver-14.cnf.xz
-orig	./cnf_ft/AProVE09-21.cnf.xz
-orig	./cnf_ft/mrpp_8x8#18_20.cnf.xz
-orig	./cnf_ft/mrpp_8x8#20_20.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0490-023-t12.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0500-024-t12.cnf.xz
-orig	./cnf_ft/mrpp_8x8#22_20.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0500-022-t12.cnf.xz
-orig	./cnf_ft/full-bf-ga-9-ce.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0490-024-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_1.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0490-023-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0500-024-t12.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0500-023-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0500-022-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0490-024-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0500-023-t12.cnf.xz
-dual	./d_cnf_ft/d_e42f6b72cb0b43dd520446914aaa0b01-CNP-5-300.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0490-022-t12.cnf.xz
-dual	./d_cnf_ft/d_59c463289adac745f019fe242cfbec6a-CNP-5-0.cnf.xz
-dual	./d_cnf_ft/d_full-bf-ga-9-ce.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0490-022-t12.cnf.xz
-orig	./cnf_ft/330617aa919e0edb980c6504e0d17eb2-CNP-5-500.cnf.xz
-dual	./d_cnf_ft/d_847acf906ee3e44de934120cc9f6f2c1-CNP-5-100.cnf.xz
-orig	./cnf_ft/e42f6b72cb0b43dd520446914aaa0b01-CNP-5-300.cnf.xz
-orig	./cnf_ft/847acf906ee3e44de934120cc9f6f2c1-CNP-5-100.cnf.xz
-orig	./cnf_ft/59c463289adac745f019fe242cfbec6a-CNP-5-0.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#16_16.cnf.xz
-dual	./d_cnf_ft/d_instance_n6_i7_pp.cnf.xz
-dual	./d_cnf_ft/d_b9871473bf0b611d3177424a442359d3-CNP-5-200.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#20_16.cnf.xz
-orig	./cnf_ft/c7895e19a65245baf11a13686d1710ca-CNP-5-600.cnf.xz
-dual	./d_cnf_ft/d_atco_enc2_opt2_10_21.cnf.xz
-orig	./cnf_ft/instance_n6_i7_pp.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-11.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#24_16.cnf.xz
-orig	./cnf_ft/d3b20f54794720fa87a76702af8f75fb-CNP-5-400.cnf.xz
-dual	./d_cnf_ft/d_eba7f569a9faed0b8e88ce3d6fa576f7-cms-scheel-md4-families-r24-c6-p1-9-13-16-18-19.cnf.xz
-dual	./d_cnf_ft/d_964b08e46077d5e4138651ac19ff707e-cms-scheel-md4-families-r24-c5-p0-7-10-15-19.cnf.xz
-orig	./cnf_ft/a9e23838767ee4cad6cf8a0dd6dda643-cms-scheel-md4-families-r24-c4-p4-9-13-18.cnf.xz
-dual	./d_cnf_ft/d_a9e23838767ee4cad6cf8a0dd6dda643-cms-scheel-md4-families-r24-c4-p4-9-13-18.cnf.xz
-dual	./d_cnf_ft/d_17d73071f8e0b710abbcfb506a54dec9-cms-scheel-md4-families-r24-c5-p0-5-11-13-18.cnf.xz
-orig	./cnf_ft/eba7f569a9faed0b8e88ce3d6fa576f7-cms-scheel-md4-families-r24-c6-p1-9-13-16-18-19.cnf.xz
-orig	./cnf_ft/8d2387dee3e6dd066a8c95b991f700e7-cms-scheel-md4-families-r24-c4-p6-13-17-19.cnf.xz
-dual	./d_cnf_ft/d_c5d11380b9104296f64d8fcd50027d69-cms-scheel-md4-families-r24-c5-p5-13-16-17-19.cnf.xz
-dual	./d_cnf_ft/d_c9a1d049ca7d766ddb2e407ddf536226-cms-scheel-md4-families-r24-c5-p1-8-13-18-19.cnf.xz
-dual	./d_cnf_ft/d_38ad1c44716f1afab7ce8342e00e53af-cms-scheel-md4-families-r24-c8-p2-3-4-5-7-12-16-19.cnf.xz
-orig	./cnf_ft/17d73071f8e0b710abbcfb506a54dec9-cms-scheel-md4-families-r24-c5-p0-5-11-13-18.cnf.xz
-dual	./d_cnf_ft/d_QG7a-gensys-brn100.sat05-3765.reshuffled-07.cnf.xz
-orig	./cnf_ft/c9a1d049ca7d766ddb2e407ddf536226-cms-scheel-md4-families-r24-c5-p1-8-13-18-19.cnf.xz
-orig	./cnf_ft/cade7e3af457911e560b839a0fbe9b38-CNP-5-700.cnf.xz
-dual	./d_cnf_ft/d_gss-20-s100.cnf.xz
-orig	./cnf_ft/b9871473bf0b611d3177424a442359d3-CNP-5-200.cnf.xz
-dual	./d_cnf_ft/d_330617aa919e0edb980c6504e0d17eb2-CNP-5-500.cnf.xz
-dual	./d_cnf_ft/d_gss-21-s100.cnf.xz
-orig	./cnf_ft/38ad1c44716f1afab7ce8342e00e53af-cms-scheel-md4-families-r24-c8-p2-3-4-5-7-12-16-19.cnf.xz
-orig	./cnf_ft/c5d11380b9104296f64d8fcd50027d69-cms-scheel-md4-families-r24-c5-p5-13-16-17-19.cnf.xz
-dual	./d_cnf_ft/d_8d2387dee3e6dd066a8c95b991f700e7-cms-scheel-md4-families-r24-c4-p6-13-17-19.cnf.xz
-orig	./cnf_ft/964b08e46077d5e4138651ac19ff707e-cms-scheel-md4-families-r24-c5-p0-7-10-15-19.cnf.xz
-orig	./cnf_ft/gss-21-s100.cnf.xz
-dual	./d_cnf_ft/d_d3b20f54794720fa87a76702af8f75fb-CNP-5-400.cnf.xz
-orig	./cnf_ft/AProVE09-11.cnf.xz
-dual	./d_cnf_ft/d_QG7a-gensys-ukn001.sat05-3841.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_gss-19-s100.cnf.xz
-dual	./d_cnf_ft/d_c7895e19a65245baf11a13686d1710ca-CNP-5-600.cnf.xz
-orig	./cnf_ft/mrpp_8x8#20_16.cnf.xz
-dual	./d_cnf_ft/d_cade7e3af457911e560b839a0fbe9b38-CNP-5-700.cnf.xz
-orig	./cnf_ft/gss-19-s100.cnf.xz
-dual	./d_cnf_ft/d_QG7a-gensys-ukn005.sat05-3845.reshuffled-07.cnf.xz
-orig	./cnf_ft/gss-16-s100.cnf.xz
-orig	./cnf_ft/gss-17-s100.cnf.xz
-orig	./cnf_ft/gss-18-s100.cnf.xz
-dual	./d_cnf_ft/d_sat-strips-gripper-10t19.sat05-1143.reshuffled-07.cnf.xz
-orig	./cnf_ft/gss-15-s100.cnf.xz
-orig	./cnf_ft/Grain_no_init_ver1_out200_known_last104_0.cnf.xz
-orig	./cnf_ft/Grain_no_init_ver1_out200_known_last105_0.cnf.xz
-orig	./cnf_ft/53741a01c644759504efe5233633dcc5-CNP-5-800.cnf.xz
-orig	./cnf_ft/gss-14-s100.cnf.xz
-dual	./d_cnf_ft/d_Grain_no_init_ver1_out200_known_last105_0.cnf.xz
-dual	./d_cnf_ft/d_Grain_no_init_ver1_out200_known_last104_0.cnf.xz
-dual	./d_cnf_ft/d_gss-18-s100.cnf.xz
-orig	./cnf_ft/mp1-9_38.cnf.xz
-orig	./cnf_ft/mp1-9_29.cnf.xz
-dual	./d_cnf_ft/d_a8db47dfe4cdd6c11fc81e1198fd4e5f-CNP-5-1000.cnf.xz
-orig	./cnf_ft/mrpp_8x8#24_16.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#18_14.cnf.xz
-dual	./d_cnf_ft/d_ce49f590c98885f7ac95567f2b1e7dd5-CNP-5-1100.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#20_14.cnf.xz
-dual	./d_cnf_ft/d_gss-15-s100.cnf.xz
-dual	./d_cnf_ft/d_gss-17-s100.cnf.xz
-dual	./d_cnf_ft/d_gss-14-s100.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_34.cnf.xz
-orig	./cnf_ft/gss-13-s100.cnf.xz
-orig	./cnf_ft/3e52d79c4b33e14d0324e71fd0b986cd-CNP-5-900.cnf.xz
-dual	./d_cnf_ft/d_gss-16-s100.cnf.xz
-dual	./d_cnf_ft/d_6ccfbb9e2406918d56e57f4c1f089d3c-CNP-5-1200.cnf.xz
-dual	./d_cnf_ft/d_instance_n6_i6_pp_ci_ce.cnf.xz
-dual	./d_cnf_ft/d_E03X18.cnf.xz
-dual	./d_cnf_ft/d_53741a01c644759504efe5233633dcc5-CNP-5-800.cnf.xz
-dual	./d_cnf_ft/d_gss-13-s100.cnf.xz
-dual	./d_cnf_ft/d_3e52d79c4b33e14d0324e71fd0b986cd-CNP-5-900.cnf.xz
-orig	./cnf_ft/mp1-9_34.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#24_14.cnf.xz
-orig	./cnf_ft/mp1-9_49.cnf.xz
-orig	./cnf_ft/28b3e198ddd246e95d91bbc06e6b2989-CNP-5-1300.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#18_13.cnf.xz
-orig	./cnf_ft/mp1-9_3.cnf.xz
-orig	./cnf_ft/ce49f590c98885f7ac95567f2b1e7dd5-CNP-5-1100.cnf.xz
-orig	./cnf_ft/a8db47dfe4cdd6c11fc81e1198fd4e5f-CNP-5-1000.cnf.xz
-dual	./d_cnf_ft/d_mod4block_2vars_11gates_u2_autoenc.cnf.xz
-orig	./cnf_ft/6ccfbb9e2406918d56e57f4c1f089d3c-CNP-5-1200.cnf.xz
-dual	./d_cnf_ft/d_Sz1024_34824.smt2-stp212.cnf.xz
-orig	./cnf_ft/mp1-9_9.cnf.xz
-orig	./cnf_ft/c0a2b770a8745e816ee3cf6ceea673df-CNP-5-1500.cnf.xz
-orig	./cnf_ft/mp1-9_11.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#16_24.cnf.xz
-orig	./cnf_ft/mp1-9_27.cnf.xz
-dual	./d_cnf_ft/d_mp1-9_49.cnf.xz
-dual	./d_cnf_ft/d_instance_n6_i6_pp.cnf.xz
-orig	./cnf_ft/mrpp_8x8#20_14.cnf.xz
-dual	./d_cnf_ft/d_QG7a-gensys-brn004.sat05-3669.reshuffled-07.cnf.xz
-orig	./cnf_ft/instance_n6_i6_pp_ci_ce.cnf.xz
-orig	./cnf_ft/mp1-9_1.cnf.xz
-dual	./d_cnf_ft/d_gensys-brn002.shuffled-as.sat05-3935.cnf.xz
-orig	./cnf_ft/instance_n6_i6_pp.cnf.xz
-dual	./d_cnf_ft/d_849129608a891ec8f64bfb44995ab569-CNP-5-1400.cnf.xz
-orig	./cnf_ft/mrpp_8x8#18_13.cnf.xz
-orig	./cnf_ft/849129608a891ec8f64bfb44995ab569-CNP-5-1400.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#24_12.cnf.xz
-dual	./d_cnf_ft/d_c0a2b770a8745e816ee3cf6ceea673df-CNP-5-1500.cnf.xz
-orig	./cnf_ft/17ef99c61659c974ae00f1b9bf092cdf-CNP-5-1700.cnf.xz
-dual	./d_cnf_ft/d_grieu-vmpc-s05-27.cnf.xz
-dual	./d_cnf_ft/d_3915c14c582d6250e4a0653a6f7807e6-CNP-5-1600.cnf.xz
-dual	./d_cnf_ft/d_28b3e198ddd246e95d91bbc06e6b2989-CNP-5-1300.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#16_12.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#22_11.cnf.xz
-orig	./cnf_ft/mrpp_6x6#16_24.cnf.xz
-dual	./d_cnf_ft/d_17ef99c61659c974ae00f1b9bf092cdf-CNP-5-1700.cnf.xz
-orig	./cnf_ft/c9950814842b5586d11865b8aef27197-CNP-5-1800.cnf.xz
-orig	./cnf_ft/98b0fb4a8b859c558ecce92c6e9905a8-CNP-5-1900.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#16_11.cnf.xz
-dual	./d_cnf_ft/d_c9950814842b5586d11865b8aef27197-CNP-5-1800.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#12_24.cnf.xz
-dual	./d_cnf_ft/d_vmpc_27.cnf.xz
-dual	./d_cnf_ft/d_98b0fb4a8b859c558ecce92c6e9905a8-CNP-5-1900.cnf.xz
-dual	./d_cnf_ft/d_E05F18.cnf.xz
-orig	./cnf_ft/sted3_0x1e3-147.cnf.xz
-dual	./d_cnf_ft/d_sted3_0x1e3-147.cnf.xz
-dual	./d_cnf_ft/d_manthey_single-ordered-initialized-w54-b9.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#14_24.cnf.xz
-orig	./cnf_ft/3915c14c582d6250e4a0653a6f7807e6-CNP-5-1600.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0300-035-t12.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0300-034-t12.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0300-033-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0300-034-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0300-035-t12.cnf.xz
-orig	./cnf_ft/mp1-klieber2017s-0300-032-t12.cnf.xz
-orig	./cnf_ft/mrpp_6x6#12_24.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0300-033-t12.cnf.xz
-dual	./d_cnf_ft/d_mp1-klieber2017s-0300-032-t12.cnf.xz
-dual	./d_cnf_ft/d_grieu-vmpc-s05-28.cnf.xz
-orig	./cnf_ft/mrpp_6x6#14_24.cnf.xz
-dual	./d_cnf_ft/d_full-bg-gb-8-ce.cnf.xz
-orig	./cnf_ft/full-bg-gb-8-ce.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#18_20.cnf.xz
-orig	./cnf_ft/grieu-vmpc-s05-28.cnf.xz
-orig	./cnf_ft/manthey_single-ordered-initialized-w54-b9.cnf.xz
-dual	./d_cnf_ft/d_MD5-27-4.cnf.xz
-orig	./cnf_ft/mrpp_8x8#22_11.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#16_10.cnf.xz
-orig	./cnf_ft/mod4block_2vars_11gates_u2_autoenc.cnf.xz
-dual	./d_cnf_ft/d_manthey_single-ordered-initialized-w48-b8.cnf.xz
-orig	./cnf_ft/mrpp_6x6#18_20.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-05.cnf.xz
-dual	./d_cnf_ft/d_f50eaf02a8041510b64104998cc81d2f-sted5_0x24204-50.cnf.xz
-orig	./cnf_ft/f50eaf02a8041510b64104998cc81d2f-sted5_0x24204-50.cnf.xz
-dual	./d_cnf_ft/d_een-tip-sat-texas-tp-5e.cnf.xz
-dual	./d_cnf_ft/d_vmpc_28.cnf.xz
-orig	./cnf_ft/b004a860aa472a75b393c9fa934d409f-6-3-8.cnf.xz
-dual	./d_cnf_ft/d_een-tip-sat-vis-eisen.cnf.xz
-dual	./d_cnf_ft/d_stable-400-0.1-7-9876543214007.cnf.xz
-dual	./d_cnf_ft/d_b004a860aa472a75b393c9fa934d409f-6-3-8.cnf.xz
-orig	./cnf_ft/grieu-vmpc-s05-27.cnf.xz
-orig	./cnf_ft/AProVE09-05.cnf.xz
-orig	./cnf_ft/dislog_a09_x11_n20.cnf.xz
-dual	./d_cnf_ft/d_em_9_3_5_all.cnf.xz
-dual	./d_cnf_ft/d_dislog_a09_x11_n20.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_6.shuffled-as.sat03-1522-sc2002.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_4.sat05-451.reshuffled-07.cnf.xz
-orig	./cnf_ft/ezfact64_8.shuffled-as.sat03-1524-sc2002.cnf.xz
-dual	./d_cnf_ft/d_contest02-ezfact64_10.sat05-449.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_8.shuffled-as.sat03-1524-sc2002.cnf.xz
-orig	./cnf_ft/ezfact64_6.shuffled-as.sat03-1522-sc2002.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_6.sat05-453.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_3.sat05-450.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_ezfact64_5.sat05-452.reshuffled-07.cnf.xz
-dual	./d_cnf_ft/d_jkkk-one-one-10-34-sat.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#10_20.cnf.xz
-orig	./cnf_ft/ASG_96_len112_known_last13_2.cnf.xz
-dual	./d_cnf_ft/d_ASG_96_len112_known_last13_2.cnf.xz
-orig	./cnf_ft/ASG_96_len112_known_last12_2.cnf.xz
-dual	./d_cnf_ft/d_ASG_96_len112_known_last12_2.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#12_20.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#16_16.cnf.xz
-orig	./cnf_ft/dislog_a11_x11_n21.cnf.xz
-dual	./d_cnf_ft/d_dislog_a11_x11_n21.cnf.xz
-dual	./d_cnf_ft/d_srhd-sgi-m37-q446.25-n35-p15-s25120921.cnf.xz
-dual	./d_cnf_ft/d_50bits_10.dimacs.cnf.xz
-orig	./cnf_ft/50bits_10.dimacs.cnf.xz
-dual	./d_cnf_ft/d_rbsat-v945c61409gyes1.cnf.xz
-orig	./cnf_ft/1c2bd05b935d6c3239907159f13f2a1d-sted5_0x0-40.cnf.xz
-dual	./d_cnf_ft/d_sted5_0x0-157.cnf.xz
-orig	./cnf_ft/75d8705ab6a8acffe29585e95268acc0-sted5_0x0-50.cnf.xz
-dual	./d_cnf_ft/d_75d8705ab6a8acffe29585e95268acc0-sted5_0x0-50.cnf.xz
-dual	./d_cnf_ft/d_1c2bd05b935d6c3239907159f13f2a1d-sted5_0x0-40.cnf.xz
-orig	./cnf_ft/50bits_11.dimacs.cnf.xz
-dual	./d_cnf_ft/d_50bits_11.dimacs.cnf.xz
-orig	./cnf_ft/sted5_0x0-157.cnf.xz
-orig	./cnf_ft/50bits_13.dimacs.cnf.xz
-dual	./d_cnf_ft/d_50bits_13.dimacs.cnf.xz
-dual	./d_cnf_ft/d_50bits_14.dimacs.cnf.xz
-orig	./cnf_ft/50bits_14.dimacs.cnf.xz
-orig	./cnf_ft/manthey_DimacsSorterHalf_35_8.cnf.xz
-dual	./d_cnf_ft/d_iso-ukn009.shuffled-as.sat05-3632.cnf.xz
-dual	./d_cnf_ft/d_manthey_DimacsSorterHalf_35_8.cnf.xz
-dual	./d_cnf_ft/d_2ff25c7783f8ceb3ebab31eebb98592e-Karatsuba6972593x13466917.cnf.xz
-orig	./cnf_ft/2ff25c7783f8ceb3ebab31eebb98592e-Karatsuba6972593x13466917.cnf.xz
-dual	./d_cnf_ft/d_ab87dc468b24b86662b3075a4e81e700-Karatsuba4477457x5308417.cnf.xz
-orig	./cnf_ft/ab87dc468b24b86662b3075a4e81e700-Karatsuba4477457x5308417.cnf.xz
-orig	./cnf_ft/48bits_11.dimacs.cnf.xz
-dual	./d_cnf_ft/d_48bits_11.dimacs.cnf.xz
-dual	./d_cnf_ft/d_DLTM_twitter454_70_12.cnf.xz
-orig	./cnf_ft/48bits_13.dimacs.cnf.xz
-orig	./cnf_ft/48bits_14.dimacs.cnf.xz
-dual	./d_cnf_ft/d_48bits_14.dimacs.cnf.xz
-dual	./d_cnf_ft/d_48bits_13.dimacs.cnf.xz
-orig	./cnf_ft/48bits_12.dimacs.cnf.xz
-dual	./d_cnf_ft/d_48bits_12.dimacs.cnf.xz
-dual	./d_cnf_ft/d_rbsat-v945c61409g5.cnf.xz
-orig	./cnf_ft/manthey_single-ordered-initialized-w48-b8.cnf.xz
-orig	./cnf_ft/manthey_DimacsSorter_35_1.cnf.xz
-dual	./d_cnf_ft/d_mrpp_8x8#10_9.cnf.xz
-orig	./cnf_ft/DLTM_twitter454_70_12.cnf.xz
-dual	./d_cnf_ft/d_manthey_DimacsSorter_35_1.cnf.xz
-orig	./cnf_ft/manthey_DimacsSorter_35_7.cnf.xz
-dual	./d_cnf_ft/d_vmpc_26.cnf.xz
-dual	./d_cnf_ft/d_AProVE09-22.cnf.xz
-dual	./d_cnf_ft/d_rbsat-v945c61409g10.cnf.xz
-dual	./d_cnf_ft/d_manthey_DimacsSorter_35_7.cnf.xz
-dual	./d_cnf_ft/d_a5364102dcc3cf5ba701c0bb8de675f2-Karatsuba7654321x1234567.cnf.xz
-orig	./cnf_ft/a5364102dcc3cf5ba701c0bb8de675f2-Karatsuba7654321x1234567.cnf.xz
-dual	./d_cnf_ft/d_rbsat-v945c61409gyes9.cnf.xz
-dual	./d_cnf_ft/d_complete-300-0.1-7-9876543213007.cnf.xz
-dual	./d_cnf_ft/d_complete-300-0.1-8-9876543213008.cnf.xz
-dual	./d_cnf_ft/d_mrpp_6x6#12_16.cnf.xz
-dual	./d_cnf_ft/d_complete-300-0.1-4-9876543213004.cnf.xz
-dual	./d_cnf_ft/d_complete-300-0.1-18-98765432130018.cnf.xz
-orig	./cnf_ft/Trivium_no_init_out350_known_last143_1.cnf.xz
-dual	./d_cnf_ft/d_Trivium_no_init_out350_known_last143_1.cnf.xz
-dual	./d_cnf_ft/d_46bits_12.dimacs.cnf.xz
-orig	./cnf_ft/46bits_12.dimacs.cnf.xz
-dual	./d_cnf_ft/d_46bits_14.dimacs.cnf.xz
-orig	./cnf_ft/46bits_14.dimacs.cnf.xz
-dual	./d_cnf_ft/d_46bits_11.dimacs.cnf.xz
-orig	./cnf_ft/46bits_11.dimacs.cnf.xz
-orig	./cnf_ft/em_9_3_5_exp.cnf.xz
-dual	./d_cnf_ft/d_em_9_3_5_exp.cnf.xz
-orig	./cnf_ft/AProVE09-22.cnf.xz
-orig	./cnf_ft/toughsat_25bits_3.cnf.xz
-orig	./cnf_ft/toughsat_25bits_0.cnf.xz
-orig	./cnf_ft/toughsat_25bits_2.cnf.xz
-dual	./d_cnf_ft/d_toughsat_26bits_1.cnf.xz
-dual	./d_cnf_ft/d_toughsat_25bits_3.cnf.xz
-orig	./cnf_ft/toughsat_26bits_1.cnf.xz
-dual	./d_cnf_ft/d_toughsat_25bits_2.cnf.xz
-dual	./d_cnf_ft/d_grieu-vmpc-s05-25.cnf.xz
-dual	./d_cnf_ft/d_toughsat_25bits_0.cnf.xz
-orig	./cnf_ft/toughsat_25bits_1.cnf.xz
-dual	./d_cnf_ft/d_toughsat_25bits_1.cnf.xz
-dual	./d_cnf_ft/d_toughsat_26bits_3.cnf.xz
-orig	./cnf_ft/toughsat_26bits_3.cnf.xz
-orig	./cnf_ft/grieu-vmpc-s05-25.cnf.xz
-orig	./cnf_ft/toughsat_26bits_2.cnf.xz
-dual	./d_cnf_ft/d_toughsat_26bits_2.cnf.xz
-dual	./d_cnf_ft/d_toughsat_26bits_0.cnf.xz
-orig	./cnf_ft/toughsat_26bits_0.cnf.xz
+d_total-10-11-s.cnf.xz
+atco_enc1_opt1_18_18.cnf.lzma
+slp-synthesis-aes-top29.cnf.bz2
+f052d49a3aa4490ea96aef921a578ba0-mod8-abd-yad.rules.7-7.cnf.xz
+UR-20-5p1.cnf.xz
+d_f052d49a3aa4490ea96aef921a578ba0-mod8-abd-yad.rules.7-7.cnf.xz
+AProVE11-16.cnf.bz2
+d_dated-10-13-s.cnf.xz
+d_podwr001_power.opt_false-unreach-call.i-cbmc-u2.cnf.xz
+atco_enc1_opt1_05_21.cnf.lzma
+atco_enc2_opt1_15_100.cnf.lzma
+safe029_power.opt_false-unreach-call.i-cbmc-u2.cnf.bz2
+pb_400_09_lb_05.cnf.xz
+d_UTI-15-5p1.cnf.xz
+d_total-5-13-s.cnf.xz
+b04_s_unknown_pre.cnf.xz
+d_b04_s_unknown_pre.cnf.xz
+ndist.b.25489.cnf.lzma
+d_b04_s_2_unknown_pre.cnf.xz
+gcdmax16bits_22.cnf.lzma
+IBM_FV_2004_rule_batch_30_SAT_dat.k75.cnf.lzma
+d_velev-fvp-sat-3.0-b18.cnf.xz
+d_a8b6af92314b321b3614ded2da24b2dd-ecarev-110-4099-22-30-4.cnf.xz
+b04_s_2_unknown_pre.cnf.xz
+d_smtlib-qfbv-aigs-src_wget_vc18517-tseitin.cnf.xz
+d_UCG-15-5p1.cnf.xz
+d_d2bf713ae5d5e4b243fc8ea8d8e5cf4b-ecarev-110-4099-22-30-2.cnf.xz
+d_partial-10-11-s.cnf.xz
+ndist.b.24491.cnf.lzma
+snw_13_9_preOptEncpre.cnf.bz2
+UTI-15-10p1.cnf.xz
+d_e06da32846ebb302bf3bd1dd6cdd7d86-ecarev-110-4099-22-30-5.cnf.xz
+d_cd361d33986dccd7f2d86016d6c35241-ecarev-110-4099-22-30-7.cnf.xz
+atco_enc2_opt1_05_21.cnf.lzma
+d_ndist.b.29481.cnf.xz
+d_partial-5-13-s.cnf.xz
+d_UR-15-5p1.cnf.xz
+ndist.b.23992.cnf.lzma
+d_ibm-2002-04r-k80.cnf.xz
+d_smtlib-qfbv-aigs-rfunit_flat-64-tseitin.cnf.xz
+d_IBM_FV_2004_rule_batch_23_SAT_dat.k90.cnf.xz
+E04F20.cnf.bz2
+g2-UCG-15-10p1.cnf.xz
+ibm-2002-29r-k75.cnf.gz
+abb313GPIA-9-tr.used-as.sat04-321.cnf.bz2
+pb_400_05_lb_00.cnf.xz
+d_pb_400_05_lb_00.cnf.xz
+smtlib-qfbv-aigs-innfeed_innfeed_vc37051-tseitin.cnf.lzma
+aaai10-planning-ipc5-pathways-17-step21.cnf.bz2
+miza-sr06-md5-48-01.cnf.bz2
+d_ndist.b.28982.cnf.xz
+af750c18578d52e60472315692ad83c0-si2-b03m-m800-03.cnf.xz
+E05F20.cnf.bz2
+SAT_dat.k30-30_rule.cnf.lzma
+ndist.b.29481.cnf.xz
+mizh-md5-47-5.cnf.bz2
+ndist.b.28982.cnf.xz
+d_smtlib-qfbv-aigs-bin_libsmbsharemodes_vc6201-tseitin.cnf.xz
+d_cb4238b7a86307dd3e0be2ef213500ad-sqrt_ineq_2.c.cnf.xz
+d_af750c18578d52e60472315692ad83c0-si2-b03m-m800-03.cnf.xz
+d_ndist.b.27485.cnf.xz
+clauses-2.cnf.bz2
+d_ibm-2004-19-k90.cnf.xz
+ibm-2002-05r-k90.cnf.xz
+d_ibm-2004-23-k100.cnf.xz
+d_ndist.b.28483.cnf.xz
+d_b51583e32432c5778c7e3e996c3bfeba-sqrt_ineq_3.c.cnf.xz
+d_dated-5-15-s.cnf.xz
+ndist.b.28483.cnf.xz
+ndist.b.22994.cnf.lzma
+IBM_FV_2004_rule_batch_22_SAT_dat.k65.cnf.lzma
+ndist.b.22495.cnf.lzma
+AProVE11-09.cnf.bz2
+d_total-5-11-s.cnf.xz
+b51583e32432c5778c7e3e996c3bfeba-sqrt_ineq_3.c.cnf.xz
+d_smtlib-qfbv-aigs-bin_libmsrpc_vc1225297-tseitin.cnf.xz
+d_vange-col-abb313GPIA-9-c.cnf.xz
+cb4238b7a86307dd3e0be2ef213500ad-sqrt_ineq_2.c.cnf.xz
+d_test_v5_r5_vr1_c1_s15604.smt2-stp212.cnf.xz
+d_dated-5-13-s.cnf.xz
+d_ndist.b.26986.cnf.xz
+d2bf713ae5d5e4b243fc8ea8d8e5cf4b-ecarev-110-4099-22-30-2.cnf.xz
+cd361d33986dccd7f2d86016d6c35241-ecarev-110-4099-22-30-7.cnf.xz
+e06da32846ebb302bf3bd1dd6cdd7d86-ecarev-110-4099-22-30-5.cnf.xz
+a8b6af92314b321b3614ded2da24b2dd-ecarev-110-4099-22-30-4.cnf.xz
+9_50-sc2017.cnf.xz
+IBM_FV_2004_rule_batch_20_SAT_dat.k75.cnf.lzma
+d_9_50-sc2017.cnf.xz
+ndist.b.26986.cnf.xz
+ibm-2004-19-k90.cnf.xz
+d_partial-5-11-s.cnf.xz
+AProVE11-15.cnf.bz2
+d_smtlib-qfbv-aigs-bin_libsmbclient_vc1225238-tseitin.cnf.xz
+d_dated-10-11-s.cnf.xz
+99db41128400c012ecb59bc6f579a540-full-ax-xa.rules.7-7.cnf.xz
+d_smtlib-qfbv-aigs-bin_libsmbsharemodes_vc5759-tseitin.cnf.xz
+d_IBM_FV_2004_rule_batch_30_SAT_dat.k75.cnf.xz
+d_99db41128400c012ecb59bc6f579a540-full-ax-xa.rules.7-7.cnf.xz
+vange-col-abb313GPIA-9-c.cnf.xz
+rnd-v25-e81-k9.cnf.lzma
+d_instance_n9_i9_pp_ci_ce.cnf.xz
+d_instance_n9_i9_pp.cnf.xz
+prime2209-100.cnf.lzma
+instance_n9_i9_pp_ci_ce.cnf.xz
+UTI-15-5p1.cnf.xz
+prime2209-99.cnf.lzma
+d_gcdmax16bits_22.cnf.xz
+instance_n9_i9_pp.cnf.xz
+prime2209-98.cnf.lzma
+ndist.b.26487.cnf.xz
+prime2209-97.cnf.lzma
+slp-synthesis-aes-top25.cnf.bz2
+efc0a77b8cddd9041d3073a5c83298f0-full-cy-caa.rules.7-7.cnf.xz
+d_ndist.b.24990.cnf.xz
+d_ndist.b.25489.cnf.xz
+ndist.b.20499.cnf.lzma
+d_post-c32s-gcdm16-22.cnf.xz
+d_ndist.b.24491.cnf.xz
+d_ndist.b.26487.cnf.xz
+d_ACG-10-10p1.cnf.xz
+prime2209-96.cnf.lzma
+d_efc0a77b8cddd9041d3073a5c83298f0-full-cy-caa.rules.7-7.cnf.xz
+md5_48_3.cnf.gz
+d_abb313GPIA-9-c.used-as.sat04-317.cnf.xz
+prime2209-95.cnf.lzma
+d_ndist.b.23992.cnf.xz
+prime2209-94.cnf.lzma
+mizh-md5-47-3.cnf.gz
+md5_47_4.cnf.gz
+stable-400-0.1-7-9876543214007.cnf.lzma
+d_IBM_FV_2004_rule_batch_22_SAT_dat.k65.cnf.xz
+E02F22.cnf.xz
+prime2209-93.cnf.lzma
+d_ndist.b.22994.cnf.xz
+prime2209-92.cnf.lzma
+d_newton.5.1.i.smt2-cvc4.cnf.xz
+d_E02F22.cnf.xz
+prime2209-91.cnf.lzma
+d_safe-30-h30-sat.cnf.xz
+d_UTI-10-10p1.cnf.xz
+AProVE11-05.cnf.lzma
+post-c32s-gcdm16-22.cnf.xz
+ndist.b.24990.cnf.xz
+prime2209-90.cnf.lzma
+d_ibm-2004-23-k80.cnf.xz
+d_ndist.b.22495.cnf.xz
+prime2209-89.cnf.lzma
+smtlib-qfbv-aigs-innfeed_innfeed_vc36608-tseitin.cnf.lzma
+d_smtlib-qfbv-aigs-innfeed_innfeed_vc37051-tseitin.cnf.xz
+aaai10-planning-ipc5-rovers-18-step12.cnf.bz2
+emptyroom-4-h22-sat.cnf.bz2
+prime2209-88.cnf.lzma
+d_mix034_rmo.opt_false-unreach-call.i-cbmc-u2.cnf.xz
+ndist.b.21996.cnf.xz
+d_UCG-10-10p1.cnf.xz
+ndist.b.23493.cnf.xz
+d_ndist.b.21996.cnf.xz
+d_ndist.b.23493.cnf.xz
+d_sted1_0x0_n438-636.cnf.xz
+prime2209-87.cnf.lzma
+AProVE09-06.cnf.lzma
+sted1_0x0_n438-636.cnf.xz
+d_IBM_FV_2004_rule_batch_20_SAT_dat.k75.cnf.xz
+d_em_14_7_3_all.cnf.xz
+mizh-sha0-36-2.cnf.bz2
+prime2209-86.cnf.lzma
+prime2209-85.cnf.lzma
+prime2209-84.cnf.lzma
+ibm-2004-29-k55.cnf.gz
+mizh-sha0-35-3.cnf.bz2
+mizh-sha0-35-5.cnf.bz2
+mizh-sha0-35-2.cnf.bz2
+d_ndist.b.20998.cnf.xz
+prime2209-83.cnf.lzma
+d_ndist.b.20499.cnf.xz
+d_AProVE09-15.cnf.xz
+prime2209-82.cnf.lzma
+rnd-v25-e13-k3.cnf.lzma
+d_Bibd-sc-10-03-08_c18.cnf.xz
+prime2209-81.cnf.lzma
+d_6cd9571bc71cc0c3fb08aeafb9ca37e4-sted1_0x24204-330.cnf.xz
+d_atco_enc1_opt1_18_18.cnf.xz
+em_14_7_3_all.cnf.xz
+d_atco_enc1_opt1_15_240.cnf.xz
+ndist.b.20998.cnf.xz
+Bibd-sc-10-03-08_c18.cnf.xz
+prime2209-80.cnf.lzma
+pb_300_02_lb_07.cnf.xz
+d_SAT_dat.k30-30_rule.cnf.xz
+prime2209-79.cnf.lzma
+d_dated-5-11-s.cnf.xz
+slp-synthesis-aes-top28.cnf.lzma
+d_prime2209-100.cnf.xz
+d_instance_n8_i9_pp.cnf.xz
+instance_n8_i9_pp.cnf.xz
+d_pb_300_02_lb_07.cnf.xz
+d_AProVE11-16.cnf.xz
+d_prime2209-99.cnf.xz
+prime2209-78.cnf.lzma
+AProVE09-15.cnf.xz
+d_pb_300_05_lb_16.cnf.xz
+d_ibm-2002-27r-k95.cnf.xz
+prime2209-77.cnf.lzma
+d_pb_300_10_lb_13.cnf.xz
+d_pb_300_05_lb_17.cnf.xz
+d_AProVE11-05.cnf.xz
+d_prime2209-97.cnf.xz
+pb_300_05_lb_17.cnf.xz
+prime2209-76.cnf.lzma
+E04F19.cnf.bz2
+d_prime2209-96.cnf.xz
+d_prime2209-98.cnf.xz
+ibm-2002-27r-k95.cnf.xz
+pb_300_05_lb_16.cnf.xz
+d_pb_300_10_lb_12.cnf.xz
+d_prime2209-95.cnf.xz
+6cd9571bc71cc0c3fb08aeafb9ca37e4-sted1_0x24204-330.cnf.xz
+prime2209-75.cnf.lzma
+d_sv-comp19_prop-reachsafety.fib_bench_longest_false-unreach-call.i-witness.cnf.xz
+d_em_14_7_3_exp.cnf.xz
+pb_300_10_lb_13.cnf.xz
+pb_300_10_lb_12.cnf.xz
+sv-comp19_prop-reachsafety.fib_bench_longest_false-unreach-call.i-witness.cnf.xz
+d_vange-col-inithx.i.1-cn-54.cnf.xz
+d_ibm-2002-29r-k75.cnf.xz
+d_itox_vc1130.cnf.xz
+d_g2-slp-synthesis-aes-top30.cnf.xz
+prime2209-74.cnf.lzma
+d_itox_vc1138.cnf.xz
+d_prime2209-93.cnf.xz
+d_prime2209-94.cnf.xz
+d_sat-grid-pbl-0200.sat05-1339.reshuffled-07.cnf.xz
+d_safe029_power.opt_false-unreach-call.i-cbmc-u2.cnf.xz
+d_atco_enc2_opt1_15_100.cnf.xz
+d_705fa7d68c47bb31cfc3f23735f36785-sted1_0x0-330.cnf.xz
+prime2209-73.cnf.lzma
+d_AProVE09-01.cnf.xz
+d_sat-pbl-00400.sat05-1322.reshuffled-07.cnf.xz
+slp-synthesis-aes-top27.cnf.lzma
+d_prime2209-92.cnf.xz
+prime2209-72.cnf.lzma
+sha0_36_5.cnf.gz
+mizh-sha0-36-4.cnf.gz
+md5_48_4.cnf.lzma
+d_prime2209-91.cnf.xz
+d_AProVE09-06.cnf.xz
+d_atco_enc1_opt1_05_21.cnf.xz
+d_ibm-2004-04-k100.cnf.xz
+d_prime2209-90.cnf.xz
+prime2209-71.cnf.lzma
+sat-grid-pbl-0200.sat05-1339.reshuffled-07.cnf.bz2
+vange-col-inithx.i.1-cn-54.cnf.xz
+d_ibm-2004-06-k90.cnf.xz
+d_prime2209-89.cnf.xz
+d_slp-synthesis-aes-top29.cnf.xz
+md5_47_1.cnf.lzma
+md5_47_2.cnf.lzma
+prime2209-70.cnf.lzma
+AProVE09-01.cnf.xz
+sha0_35_1.cnf.gz
+2cf177493f485906510321213cfdc994-si2-b03m-m400-03.cnf.xz
+d_prime2209-88.cnf.xz
+d_smtlib-qfbv-aigs-innfeed_innfeed_vc36608-tseitin.cnf.xz
+d_UR-10-5p1.cnf.xz
+prime2209-69.cnf.lzma
+d_prime2209-87.cnf.xz
+prime2209-68.cnf.lzma
+AProVE11-12.cnf.bz2
+d_2cf177493f485906510321213cfdc994-si2-b03m-m400-03.cnf.xz
+d_prime2209-86.cnf.xz
+sat-pbl-00400.sat05-1322.reshuffled-07.cnf.bz2
+d_prime2209-85.cnf.xz
+prime2209-67.cnf.lzma
+d_atco_enc2_opt1_05_21.cnf.xz
+705fa7d68c47bb31cfc3f23735f36785-sted1_0x0-330.cnf.xz
+d_servers_slapd_a_vc149923.cnf.xz
+instance_n8_i8_pp_ci_ce.cnf.xz
+d_instance_n8_i8_pp_ci_ce.cnf.xz
+g2-slp-synthesis-aes-top30.cnf.xz
+d_instance_n8_i8_pp.cnf.xz
+d_prime2209-83.cnf.xz
+instance_n8_i8_pp.cnf.xz
+d_rnd-v25-e81-k9.cnf.xz
+d_prime2209-84.cnf.xz
+d_AProVE09-10.cnf.xz
+d_AProVE11-09.cnf.xz
+prime2209-65.cnf.lzma
+d_slp-synthesis-aes-top28.cnf.xz
+jkkk-random-132906006427000-10-10-36-SUM-sat.cnf.lzma
+d_prime2209-82.cnf.xz
+AProVE09-10.cnf.xz
+prime2209-64.cnf.lzma
+d_snw_13_9_preOptEncpre.cnf.xz
+d_prime2209-81.cnf.xz
+atco_enc1_opt1_10_21.cnf.lzma
+d_prime2209-79.cnf.xz
+ibm-2004-04-k100.cnf.xz
+d_AProVE11-15.cnf.xz
+d_prime2209-80.cnf.xz
+ibm-2004-06-k90.cnf.xz
+d_prime2209-78.cnf.xz
+d_prime2209-77.cnf.xz
+d_prime2209-76.cnf.xz
+d_cms-scheel-md5-families-r24-c8-p0-3-5-6-14-16-18-19-sc2018.cnf.xz
+cms-scheel-md5-families-r24-c8-p0-3-5-6-14-16-18-19-sc2018.cnf.xz
+IBM_FV_2004_rule_batch_01_SAT_dat.k100.cnf.lzma
+d_prime2209-75.cnf.xz
+d_itox_vc1044.cnf.xz
+E03X18.cnf.lzma
+d_AProVE09-24.cnf.xz
+d_aaai10-planning-ipc5-pathways-17-step21.cnf.xz
+jkkk-random-132906006493326-10-10-35-SUM-sat.cnf.lzma
+d_prime2209-74.cnf.xz
+d_2c4c2d3cedaef991b10eef7a54c0d920-less-cy-caa.rules.6-4.cnf.xz
+2c4c2d3cedaef991b10eef7a54c0d920-less-cy-caa.rules.6-4.cnf.xz
+d_1f49f37f051af218337c654f120cf4d0-ex039_33.cnf.xz
+d_prime2209-73.cnf.xz
+d_itox_vc1033.cnf.xz
+d_prime2209-72.cnf.xz
+atco_enc2_opt1_10_21.cnf.lzma
+d_clauses-2.cnf.xz
+UR-10-5p1.cnf.xz
+test_v3_r3_vr10_c1_s24300.smt2-stp212.cnf.bz2
+AProVE09-24.cnf.xz
+d_slp-synthesis-aes-top27.cnf.xz
+IBM_FV_2004_rule_batch_01_SAT_dat.k95.cnf.lzma
+d_prime2209-70.cnf.xz
+d_prime2209-71.cnf.xz
+d_md5_48_3.cnf.xz
+d_prime2209-69.cnf.xz
+d_g2-slp-synthesis-aes-top26.cnf.xz
+d_itox_vc909.cnf.xz
+d_md5_48_4.cnf.xz
+d_prime2209-68.cnf.xz
+1f49f37f051af218337c654f120cf4d0-ex039_33.cnf.xz
+d_md5_47_2.cnf.xz
+d_md5_47_4.cnf.xz
+d_mizh-md5-47-3.cnf.xz
+d_mizh-md5-47-5.cnf.xz
+d_prime2209-67.cnf.xz
+d_md5_47_1.cnf.xz
+d_AProVE09-03.cnf.xz
+jkkk-random-132906006148277-10-10-34-SUM-sat.cnf.lzma
+simon03:sat02bis:cnt10.used-as.sat04-356.cnf.lzma
+sha0_36_3.cnf.lzma
+sha0_36_1.cnf.lzma
+d_rnd-v25-e13-k3.cnf.xz
+d_pb_200_03_lb_03.cnf.xz
+d_prime2209-65.cnf.xz
+d_slp-synthesis-aes-top25.cnf.xz
+g2-slp-synthesis-aes-top26.cnf.xz
+d_jkkk-random-132906006427000-10-10-36-SUM-sat.cnf.xz
+g2-mizh-md5-48-5.cnf.xz
+d_g2-mizh-md5-48-5.cnf.xz
+mizh-md5-48-2.cnf.xz
+QuasiGroup-4-12_c18.cnf.xz
+d_QuasiGroup-4-12_c18.cnf.xz
+d_mizh-md5-48-2.cnf.xz
+AProVE09-03.cnf.xz
+d_prime2209-64.cnf.xz
+d_een-tip-sat-nusmv-tt5.B.cnf.xz
+d_g2-slp-synthesis-aes-top24.cnf.xz
+d_miza-sr06-md5-48-01.cnf.xz
+jkkk-random-132906006493326-10-10-35-OR-sat.cnf.lzma
+d_een-tip-sat-nusmv-t5.B.cnf.xz
+jkkk-random-132906006427000-10-10-35-OR-sat.cnf.lzma
+jkkk-random-132906006204477-10-10-35-OR-sat.cnf.lzma
+d_E04F20.cnf.xz
+b407c25675c930cbb6bcc29d1eb8dd21-less-cy-caa.rules.4-9.cnf.xz
+d_b407c25675c930cbb6bcc29d1eb8dd21-less-cy-caa.rules.4-9.cnf.xz
+d_IBM_FV_2004_rule_batch_01_SAT_dat.k95.cnf.xz
+een-tip-sat-nusmv-tt5.B.cnf.xz
+d_jkkk-random-132906006493326-10-10-35-SUM-sat.cnf.xz
+d_IBM_FV_2004_rule_batch_01_SAT_dat.k100.cnf.xz
+e2_1.c.smt2-stp212.cnf.bz2
+complete-300-0.1-7-9876543213007.cnf.lzma
+een-tip-sat-nusmv-t5.B.cnf.xz
+complete-300-0.1-4-9876543213004.cnf.lzma
+d_aaai10-planning-ipc5-rovers-18-step12.cnf.xz
+complete-300-0.1-8-9876543213008.cnf.lzma
+d_instance_n7_i8_pp.cnf.xz
+complete-300-0.1-18-98765432130018.cnf.lzma
+AProVE09-20.cnf.gz
+d_emptyroom-4-h22-sat.cnf.xz
+instance_n7_i8_pp.cnf.xz
+d_mp1-9_27.cnf.xz
+mrpp_8x8#20_24.cnf.lzma
+g2-slp-synthesis-aes-top24.cnf.xz
+d_jkkk-random-132906006148277-10-10-34-SUM-sat.cnf.xz
+mrpp_8x8#22_24.cnf.lzma
+d_E02F20.cnf.xz
+d_sv-comp19_prop-reachsafety.triangular-longer_false-unreach-call.i-witness.cnf.xz
+sv-comp19_prop-reachsafety.triangular-longer_false-unreach-call.i-witness.cnf.xz
+d_simon03:sat02bis:cnt10.used-as.sat04-356.cnf.xz
+d_sha0_36_5.cnf.xz
+d_mizh-sha0-36-4.cnf.xz
+E02F20.cnf.xz
+d_mizh-sha0-36-2.cnf.xz
+gss-20-s100.cnf.bz2
+pb_200_03_lb_03.cnf.xz
+d_mizh-sha0-35-5.cnf.xz
+d_ibm-2004-03-k70.cnf.xz
+d_mizh-sha0-35-3.cnf.xz
+d_mizh-sha0-35-2.cnf.xz
+d_mizh-sha0-35-4.cnf.xz
+d_preimage_80r_495m_160h_seed_379.cnf.xz
+d_AProVE11-12.cnf.xz
+d_sha0_35_1.cnf.xz
+d_E05F20.cnf.xz
+d_jkkk-random-132906006493326-10-10-35-OR-sat.cnf.xz
+d_atco_enc1_opt1_10_21.cnf.xz
+d_83c4a55772eb377fd79b42d8510db31f-ecarev-110-1031-23-40-5.cnf.xz
+d_jkkk-random-132906006427000-10-10-35-OR-sat.cnf.xz
+d_Eternity-10-05_c18.cnf.xz
+d_jkkk-random-132906006204477-10-10-35-OR-sat.cnf.xz
+d_instance_n7_i7_pp_ci_ce.cnf.xz
+d_atco_enc1_opt1_10_15.cnf.xz
+d_d7549284b74347abcdabaafb7b423249-ecarev-110-1031-23-40-2.cnf.xz
+d_abb313GPIA-9-tr.used-as.sat04-321.cnf.xz
+d_d00229433c23570f6e1c4147ec46fdf2-ecarev-110-1031-23-40-1.cnf.xz
+atco_enc2_opt2_10_21.cnf.lzma
+Eternity-10-05_c18.cnf.xz
+atco_enc1_opt1_10_15.cnf.xz
+d_cc813d033d2b735cf872a7568eacda24-ecarev-110-1031-23-40-8.cnf.xz
+d_6296e098cc09de8bb7ce12138c2a77c8-ecarev-110-1031-23-40-6.cnf.xz
+d_6a5b9cc4d0ab64ea234befc27b6a431b-ecarev-110-1031-23-40-7.cnf.xz
+d_sha0_36_3.cnf.xz
+mp1-blockpuzzle_9x9_s7_free9.cnf.xz
+d_sha0_36_1.cnf.xz
+ibm-2004-03-k70.cnf.xz
+d_mp1-9_9.cnf.xz
+instance_n7_i7_pp_ci_ce.cnf.xz
+d_instance_n7_i7_pp.cnf.xz
+instance_n7_i7_pp.cnf.xz
+mizh-sha0-35-4.cnf.xz
+d_ibm-2004-01-k90.cnf.xz
+mrpp_8x8#24_20.cnf.lzma
+preimage_80r_495m_160h_seed_379.cnf.xz
+preimage_80r_491m_160h_seed_391.cnf.xz
+d_mp1-blockpuzzle_9x9_s7_free9.cnf.xz
+d_preimage_80r_491m_160h_seed_391.cnf.xz
+d_AProVE09-25.cnf.xz
+d_sat-strips-gripper-12t23.sat05-1144.reshuffled-07.cnf.xz
+E05F18.cnf.bz2
+d_atco_enc2_opt1_10_21.cnf.xz
+d_ibm-2004-3_02_3-k95.cnf.xz
+d_mp1-blockpuzzle_9x9_s1_free10.cnf.xz
+d7549284b74347abcdabaafb7b423249-ecarev-110-1031-23-40-2.cnf.xz
+6a5b9cc4d0ab64ea234befc27b6a431b-ecarev-110-1031-23-40-7.cnf.xz
+83c4a55772eb377fd79b42d8510db31f-ecarev-110-1031-23-40-5.cnf.xz
+6296e098cc09de8bb7ce12138c2a77c8-ecarev-110-1031-23-40-6.cnf.xz
+cc813d033d2b735cf872a7568eacda24-ecarev-110-1031-23-40-8.cnf.xz
+d00229433c23570f6e1c4147ec46fdf2-ecarev-110-1031-23-40-1.cnf.xz
+d_q_query_3_l43_lambda.cnf.xz
+mp1-blockpuzzle_9x9_s1_free10.cnf.xz
+d_f746dae2050dd4aa48bcd53e8bd897b4-ex065_25.cnf.xz
+f746dae2050dd4aa48bcd53e8bd897b4-ex065_25.cnf.xz
+vmpc_27.cnf.gz
+d_mp1-9_38.cnf.xz
+d_test_v3_r3_vr10_c1_s24300.smt2-stp212.cnf.xz
+AProVE09-25.cnf.xz
+ibm-2004-3_02_3-k95.cnf.xz
+d_q_query_3_l42_lambda.cnf.xz
+d_mp1-9_11.cnf.xz
+d_AProVE09-19.cnf.xz
+d_q_query_3_l41_lambda.cnf.xz
+d_q_query_3_l40_lambda.cnf.xz
+d_AProVE09-20.cnf.xz
+E04F17.cnf.lzma
+d_mrpp_8x8#22_24.cnf.xz
+d_mrpp_8x8#20_24.cnf.xz
+q_query_3_l43_lambda.cnf.xz
+d_mod3block_3vars_9gates_restr.cnf.xz
+AProVE09-19.cnf.xz
+d_mrpp_8x8#24_24.cnf.xz
+q_query_3_l42_lambda.cnf.xz
+d_q_query_3_l39_lambda.cnf.xz
+Sz1024_34824.smt2-stp212.cnf.bz2
+sat-strips-gripper-12t23.sat05-1144.reshuffled-07.cnf.bz2
+d_AProVE09-17.cnf.xz
+vmpc_28.cnf.bz2
+d_q_query_3_l38_lambda.cnf.xz
+q_query_3_l41_lambda.cnf.xz
+mrpp_8x8#16_16.cnf.lzma
+mrpp_8x8#24_24.cnf.xz
+d_ae1297b45c60929765a002a59e58ca85-cms-scheel-md5-families-r24-c4-p1-3-4-16.cnf.xz
+d_ab045d95555fad4b4156c7083fa66977-cms-scheel-md5-families-r24-c5-p2-7-8-15-19.cnf.xz
+5ac0262a6f6ff0b1c7ea0713f534645c-cms-scheel-md5-families-r24-c7-p1-5-6-12-16-18-19.cnf.xz
+d_q_query_3_l37_lambda.cnf.xz
+d_0216f9d35f2b695b904fffb312e3e611-cms-scheel-md5-families-r24-c11-p1-4-6-9-10-11-13-15-17-18-19.cnf.xz
+d_5ac0262a6f6ff0b1c7ea0713f534645c-cms-scheel-md5-families-r24-c7-p1-5-6-12-16-18-19.cnf.xz
+0216f9d35f2b695b904fffb312e3e611-cms-scheel-md5-families-r24-c11-p1-4-6-9-10-11-13-15-17-18-19.cnf.xz
+ae1297b45c60929765a002a59e58ca85-cms-scheel-md5-families-r24-c4-p1-3-4-16.cnf.xz
+d_mp1-9_29.cnf.xz
+ab045d95555fad4b4156c7083fa66977-cms-scheel-md5-families-r24-c5-p2-7-8-15-19.cnf.xz
+q_query_3_l40_lambda.cnf.xz
+d_AProVE09-12.cnf.xz
+AProVE09-17.cnf.xz
+d_E04F19.cnf.xz
+q_query_3_l39_lambda.cnf.xz

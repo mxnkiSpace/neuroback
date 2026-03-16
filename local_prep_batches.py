@@ -8,86 +8,115 @@ BATCH_SIZES = {
     "finetune": 500
 }
 
-# 2. URLs corregidas según la estructura exacta de HuggingFace
+PATHS = {
+    "pretrain": "data/cnf/pretrain",
+    "finetune": "data/cnf/finetune"
+}
+
+# Paths donde se encuentran los datos. Los archivos ya están descargados
 URLS = {
     "pretrain": {
-        "orig": "https://huggingface.co/datasets/neuroback/DataBack/resolve/main/original/cnf_pt.tar.gz",
-        "dual": "https://huggingface.co/datasets/neuroback/DataBack/resolve/main/dual/d_cnf_pt.tar.gz"
+        "orig": "data/cnf/pretrain/cnf_pt.tar.gz",
+        "dual": "data/cnf/pretrain/d_cnf_pt.tar.gz"
     },
     "finetune": {
-        "orig": "https://huggingface.co/datasets/neuroback/DataBack/resolve/main/original/cnf_ft.tar.gz",
-        "dual": "https://huggingface.co/datasets/neuroback/DataBack/resolve/main/dual/d_cnf_ft.tar.gz"
+        "orig": "data/cnf/finetune/cnf_ft.tar.gz",
+        "dual": "data/cnf/finetune/d_cnf_ft.tar.gz"
     }
 }
 
-def download_file(url, filename):
-    """Descarga el archivo solo si no existe localmente."""
-    if not os.path.exists(filename):
-        print(f"Descargando {filename} (esto puede tomar un tiempo)...")
-        try:
-            urllib.request.urlretrieve(url, filename)
-        except urllib.error.HTTPError as e:
-            print(f"Error HTTP {e.code}: No se pudo descargar desde {url}")
-            raise e
-    else:
-        print(f"El archivo {filename} ya existe. Omitiendo descarga.")
+def generate_batches_pretrain():
+    names = []
 
-def analyze_and_batch():
-    # Crear carpetas de salida
+    #Añademos los arhivos sueltos que estan en 
+    for root, _, files in os.walk(PATHS["pretrain"]):
+        for file in files:
+            if file.endswith(".xz") or file.endswith(".cnf-1.gz"):
+                file_path = os.path.join(root, file)
+                names.append({
+                    'name': file,
+                    'size': os.path.getsize(file_path)
+                })
+
+    # Los nombres quedan de la forma ./d_cnf_pt/d_CliqueFormula_56_10_35.cnf.xz y ./cnf_pt/CliqueFormula_62_10_39.cnf.xz
     os.makedirs("batches/pretrain", exist_ok=True)
+    urls = URLS["pretrain"]
+    for _, url in urls.items():
+        with tarfile.open(url, "r:gz") as tar:
+            for member in tar.getmembers():
+                if member.isfile():
+                    names.append({
+                        # Le quitamos el prefijo "./d_cnf_pt/" o "./cnf_pt/" para que quede solo el nombre del archivo
+                        'name': member.name.split("/")[-1],
+                        'size': member.size
+                    })
+    # Ordenamos los archivos
+    names.sort(key=lambda x: x['size'], reverse=True)
+
+    #Generamos los batches
+    batch_size = BATCH_SIZES["pretrain"]
+    for i in range(0, len(names), batch_size):
+        batch_slice = names[i : i + batch_size]
+        batch_idx = i // batch_size
+        os.makedirs("batches/pretrain", exist_ok=True)
+        with open(f"batches/pretrain/batch_{batch_idx:02d}.txt", "w") as f:
+            for item in batch_slice:
+                f.write(f"{item['name']}\n")   
+    
+
+def generate_batches_finetune():
+    names = []
+
+    #Añademos los arhivos sueltos que estan en 
+    for root, _, files in os.walk(PATHS["finetune"]):
+        for file in files:
+            file_path = os.path.join(root, file)
+            names.append({
+                'name': file,
+                'size': os.path.getsize(file_path)
+            })
+
     os.makedirs("batches/finetune", exist_ok=True)
+    urls = URLS["finetune"]
+    for _, url in urls.items():
+        with tarfile.open(url, "r:gz") as tar:
+            for member in tar.getmembers():
+                if member.isfile():
+                    names.append({
+                        'name': member.name.split("/")[-1],
+                        'size': member.size
+                    })
+    # Ordenamos los archivos
+    names.sort(key=lambda x: x['size'], reverse=True)
+
+    #Generamos los batches
+    batch_size = BATCH_SIZES["finetune"]
+    for i in range(0, len(names), batch_size):
+        batch_slice = names[i : i + batch_size]
+        batch_idx = i // batch_size
+        os.makedirs("batches/finetune", exist_ok=True)
+        with open(f"batches/finetune/batch_{batch_idx:02d}.txt", "w") as f:
+            for item in batch_slice:
+                f.write(f"{item['name']}\n")
+
+def generate_batches_validation():
+    # Para validación, simplemente listamos los archivos sin batch
+    names = []
+    for root, _, files in os.walk("data/cnf/validation"):
+        for file in files:
+            file_path = os.path.join(root, file)
+            names.append(file)
+
     os.makedirs("batches/validation", exist_ok=True)
+    with open("batches/validation/batch_00.txt", "w") as f:
+        for name in names:
+            f.write(f"{name}\n")
 
-    for dataset_type, sources in URLS.items():
-        print(f"\n--- Procesando {dataset_type.upper()} ---")
-        all_files = []
-        
-        for source_name, url in sources.items(): # source_name será 'orig' o 'dual'
-            # Usamos el nombre exacto que viene en la URL para guardarlo localmente
-            tar_filename = url.split('/')[-1]
-            download_file(url, tar_filename)
-            
-            print(f"Leyendo metadatos de {tar_filename}...")
-            # Leemos el índice del tar.gz para extraer nombres y tamaños sin descomprimir
-            with tarfile.open(tar_filename, "r:gz") as tar:
-                for member in tar.getmembers():
-                    if member.isfile() and member.name.endswith(".xz"):
-                        all_files.append({
-                            'source': source_name,
-                            'name': member.name,
-                            'size': member.size
-                        })
-        
-        # 2. Ordenar estrictamente por tamaño (de mayor a menor)
-        all_files.sort(key=lambda x: x['size'], reverse=True)
-        print(f"Total de archivos detectados en {dataset_type}: {len(all_files)}")
-        
-        # 3. Generar los archivos .txt de batch
-        batch_size = BATCH_SIZES[dataset_type]
-        for i in range(0, len(all_files), batch_size):
-            batch_slice = all_files[i : i + batch_size]
-            batch_idx = i // batch_size
-            batch_filename = f"batches/{dataset_type}/batch_{batch_idx:02d}.txt"
-            
-            with open(batch_filename, "w") as f:
-                for item in batch_slice:
-                    # Formato: [orig/dual] [nombre_del_archivo]
-                    f.write(f"{item['source']}\t{item['name']}\n")
-        
-        print(f"Se generaron {batch_idx + 1} batches para {dataset_type}.")
-
-    # 4. Manejo de Validation (archivos sueltos)
-    val_dir = "data/cnf/validation"
-    if os.path.exists(val_dir):
-        print("\n--- Procesando VALIDATION ---")
-        val_files = [f for f in os.listdir(val_dir) if f.endswith(".xz")]
-        if val_files:
-            with open("batches/validation/batch_00.txt", "w") as f:
-                for val_f in val_files:
-                    f.write(f"local\t{val_f}\n")
-            print(f"Se generó 1 batch para validation con {len(val_files)} archivos.")
-        else:
-            print("No se encontraron archivos .xz en la carpeta validation local.")
 
 if __name__ == "__main__":
-    analyze_and_batch()
+    generate_batches_pretrain()
+    print("Batches de pretrain generados.")
+    generate_batches_finetune()
+    print("Batches de finetune generados.")
+    generate_batches_validation()
+    print("Batches de validación generados.")

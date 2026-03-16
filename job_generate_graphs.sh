@@ -9,99 +9,230 @@
 #SBATCH -o logs/nb_%j_%a.out
 
 # ==============================================================================
-# USO: sbatch --array=0-N job_generate_graphs.sh <pretrain|finetune|validation>
+# USO (local):   bash job_generate_graphs.sh <pretrain|finetune|validation> <batch_id>
+# USO (cluster): sbatch --array=0-N job_generate_graphs.sh <pretrain|finetune|validation>
 # ==============================================================================
 
 SET_TYPE=$1
-
-#<============AGREGUE DESDE AQUI
 BATCH_ID=$2
-# 1. Validar que no falten ambos y que no existan ambos a la vez
-if [ -z "$BATCH_ID" ] && [ -z "$SLURM_ARRAY_TASK_ID" ]; then
-    echo "Error: Debe especificar segundo argumento <BATCH_ID> or ejectruat usando sbatch --array."
-    exit 1
-elif [ -n "$BATCH_ID" ] && [ -n "$SLURM_ARRAY_TASK_ID" ]; then
-    echo "Error: No se puede utilizar el argumento --array y a la vez uasr el segundo argumento <BATCH_ID>"
+
+# Validación: Debe especificar SET_TYPE
+if [ -z "$SET_TYPE" ]; then
+    echo "Error: Debe especificar <pretrain|finetune|validation>"
     exit 1
 fi
 
+# Validar que no falten ambos y que no existan ambos a la vez
+if [ -z "$BATCH_ID" ] && [ -z "$SLURM_ARRAY_TASK_ID" ]; then
+    echo "Error: Debe especificar <batch_id> o ejecutar con sbatch --array"
+    exit 1
+elif [ -n "$BATCH_ID" ] && [ -n "$SLURM_ARRAY_TASK_ID" ]; then
+    echo "Error: No se puede usar --array y <batch_id> simultáneamente"
+    exit 1
+fi
+
+# Usar BATCH_ID en modo local, SLURM_ARRAY_TASK_ID en cluster
 if [ -n "$BATCH_ID" ]; then
     SLURM_ARRAY_TASK_ID="$BATCH_ID"
 fi
-#<============HASTA AQUI
 
-# Directorio base
-BASE_DIR="/global/home/users/$USER/scratch/neuroback/neuroback"
+# ==============================================================================
+# DETECCIÓN DE ENTORNO (local vs SAVIO)
+# ==============================================================================
+if [ -d "/global/home/users/$USER/scratch" ]; then
+    # SAVIO Cluster
+    BASE_DIR="/global/home/users/$USER/scratch/neuroback/neuroback"
+    RUNNING_ENV="savio"
+else
+    # Local - usar ruta relativa
+    BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    RUNNING_ENV="local"
+fi
+
 DATA_DIR="$BASE_DIR/data"
 BATCH_FILE="$BASE_DIR/batches/${SET_TYPE}/batch_$(printf "%02d" $SLURM_ARRAY_TASK_ID).txt"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Entorno: $RUNNING_ENV | BASE_DIR: $BASE_DIR"
+
+# Validación del batch
+if [ ! -f "$BATCH_FILE" ]; then
+    echo "Error: Batch $BATCH_FILE no encontrado."
+    exit 1
+fi
 
 # Carpeta temporal en el disco local del nodo
 LOCAL_TMP="/tmp/nb_${SET_TYPE}_${SLURM_ARRAY_TASK_ID}"
 
-# Validamos
-if [ ! -f "$BATCH_FILE" ]; then
-    echo "Error: Batch $BATCH_FILE no encontrado."
-    exit 0
-fi
-
 echo "Iniciando procesamiento del batch: $(basename $BATCH_FILE)"
+echo "Carpeta temporal: $LOCAL_TMP"
 
 # Preparamos entorno local en el nodo
-mkdir -p $LOCAL_TMP/input $LOCAL_TMP/output $LOCAL_TMP/backbone
+mkdir -p "$LOCAL_TMP/input" "$LOCAL_TMP/output" "$LOCAL_TMP/backbone"
 
-# Separamos los archivos según su origen para saber de qué .tar.gz extraer
-grep "^orig" $BATCH_FILE | awk '{print $2}' > $LOCAL_TMP/orig_cnf_list.txt
-grep "^dual" $BATCH_FILE | awk '{print $2}' > $LOCAL_TMP/dual_cnf_list.txt
-grep "^local" $BATCH_FILE | awk '{print $2}' > $LOCAL_TMP/local_cnf_list.txt
-
-# Generamos las listas de backbones reemplazando cnf_ por bb_
-sed 's/$/.backbone.xz/' $LOCAL_TMP/orig_cnf_list.txt | sed 's/cnf_/bb_/g' > $LOCAL_TMP/orig_bb_list.txt
-sed 's/$/.backbone.xz/' $LOCAL_TMP/dual_cnf_list.txt | sed 's/cnf_/bb_/g' > $LOCAL_TMP/dual_bb_list.txt
-sed 's/$/.backbone.xz/' $LOCAL_TMP/local_cnf_list.txt | sed 's/cnf_/bb_/g' > $LOCAL_TMP/local_bb_list.txt
-
-if [ "$SET_TYPE" == "pretrain" ]; then PREFIX="pt"; else PREFIX="ft"; fi
-
-# Extraemos solo los archivos necesarios de los .tar.gz hacia el nodo local
-echo "Extrayendo archivos originales..."
-if [ -s $LOCAL_TMP/orig_cnf_list.txt ]; then
-    tar -xzf "$DATA_DIR/cnf/$SET_TYPE/cnf_${PREFIX}.tar.gz" -C "$LOCAL_TMP/input/" -T $LOCAL_TMP/orig_cnf_list.txt
-    tar -xzf "$DATA_DIR/backbone/$SET_TYPE/bb_${PREFIX}.tar.gz" -C "$LOCAL_TMP/backbone/" -T $LOCAL_TMP/orig_bb_list.txt
-fi
-
-echo "Extrayendo archivos duales..."
-if [ -s $LOCAL_TMP/dual_cnf_list.txt ]; then
-    tar -xzf "$DATA_DIR/cnf/$SET_TYPE/d_cnf_${PREFIX}.tar.gz" -C "$LOCAL_TMP/input/" -T $LOCAL_TMP/dual_cnf_list.txt
-    tar -xzf "$DATA_DIR/backbone/$SET_TYPE/d_bb_${PREFIX}.tar.gz" -C "$LOCAL_TMP/backbone/" -T $LOCAL_TMP/dual_bb_list.txt
-fi
-
-echo "Copiando archivos locales..."
-if [ -s $LOCAL_TMP/local_cnf_list.txt ]; then
-    while read file; do
-        cp "$DATA_DIR/cnf/$SET_TYPE/$file" "$LOCAL_TMP/input/"
-        if [ -f "$DATA_DIR/backbone/$SET_TYPE/${file}.backbone.xz" ]; then
-            cp "$DATA_DIR/backbone/$SET_TYPE/${file}.backbone.xz" "$LOCAL_TMP/backbone/"
+# ==============================================================================
+# FUNCIÓN: Buscar y extraer archivo de .tar.gz
+# Args: $1=archivo_a_buscar, $2=directorio_destino, $3=prefijo_tar (pt/ft)
+# ==============================================================================
+extract_from_tar() {
+    local filename=$1
+    local dest_dir=$2
+    local prefix=$3
+    local cnf_or_bb=$4  # "cnf" o "bb"
+    
+    # Intenta en archivo suelto primero
+    if [ -f "$DATA_DIR/${cnf_or_bb}/$SET_TYPE/$filename" ]; then
+        cp "$DATA_DIR/${cnf_or_bb}/$SET_TYPE/$filename" "$dest_dir/"
+        return 0
+    fi
+    
+    # Intenta en TAR.GZ "orig" (sin prefijo dual)
+    local tar_file="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/${cnf_or_bb}_${prefix}.tar.gz"
+    if [ -f "$tar_file" ]; then
+        if tar -tzf "$tar_file" "$filename" &>/dev/null; then
+            tar -xzf "$tar_file" -C "$dest_dir/" "$filename" 2>/dev/null
+            if [ $? -eq 0 ]; then
+                return 0
+            fi
         fi
-    done < $LOCAL_TMP/local_cnf_list.txt
+    fi
+    
+    # Intenta en TAR.GZ "dual"
+    local tar_file_dual="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/d_${cnf_or_bb}_${prefix}.tar.gz"
+    if [ -f "$tar_file_dual" ]; then
+        if tar -tzf "$tar_file_dual" "$filename" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$filename" 2>/dev/null
+            if [ $? -eq 0 ]; then
+                return 0
+            fi
+        fi
+    fi
+    
+    return 1  # No encontrado
+}
+
+# ==============================================================================
+# FUNCIÓN: Buscar archivo backbone con fallbacks
+# Args: $1=cnf_filename, $2=destino, $3=prefix
+# ==============================================================================
+find_and_copy_backbone() {
+    local cnf_name=$1
+    local dest_dir=$2
+    local prefix=$3
+    
+    # Variante 1: cnf_name.backbone.xz (ej: archivo.cnf.xz.backbone.xz)
+    local bb_name="${cnf_name}.backbone.xz"
+    if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
+        return 0
+    fi
+    
+    # Variante 2: sin el .cnf/.gz/.xz/.lzma/.bz2 inicial (ej: archivo.backbone.xz)
+    local base_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//' | sed 's/\.[a-z0-9]*$//')
+    bb_name="${base_name}.backbone.xz"
+    if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
+        return 0
+    fi
+    
+    echo "  [Advertencia] No se encontró backbone para: $cnf_name"
+    return 1
+}
+
+# ==============================================================================
+# PROCESAR BATCH
+# ==============================================================================
+if [ "$SET_TYPE" == "pretrain" ]; then 
+    PREFIX="pt"
+else 
+    PREFIX="ft"
 fi
 
-# Limpiamos la lista del batch para python
-awk '{print $2}' $BATCH_FILE > $LOCAL_TMP/clean_batch.txt
+echo "Procesando archivos del batch (PREFIX=$PREFIX)..."
+
+# Leer archivo batch y procesar cada línea
+processed_count=0
+failed_count=0
+while IFS= read -r cnf_filename; do
+    # Trimear espacios y caracteres especiales (ej: ~)
+    cnf_filename=$(echo "$cnf_filename" | sed 's/^[[:space:]~]*//' | sed 's/[[:space:]]*$//')
+    
+    # Ignorar líneas vacías
+    [ -z "$cnf_filename" ] && continue
+    
+    echo "  ✓ Extrayendo: $cnf_filename"
+    
+    # Extraer CNF
+    if extract_from_tar "$cnf_filename" "$LOCAL_TMP/input" "$PREFIX" "cnf"; then
+        ((processed_count++))
+    else
+        echo "    [ERROR] No se encontró CNF: $cnf_filename"
+        ((failed_count++))
+        continue
+    fi
+    
+    # Extraer backbone (no falla si no existe)
+    find_and_copy_backbone "$cnf_filename" "$LOCAL_TMP/backbone" "$PREFIX"
+    
+done < "$BATCH_FILE"
+
+echo "Resumen: $processed_count archivos procesados, $failed_count errores"
+
+# Crear archivo limpio para python
+cat "$BATCH_FILE" | grep -v '^$' > "$LOCAL_TMP/clean_batch.txt"
 
 # Pre-creamos subcarpetas para evitar errores de multiprocessing en python
-mkdir -p "$LOCAL_TMP/output/processed/cnf_${PREFIX}"
-mkdir -p "$LOCAL_TMP/output/processed/./cnf_${PREFIX}"
+mkdir -p "$LOCAL_TMP/output/processed"
 
-# Ejecutamos procesamiento de grafos
-echo "Procesando grafos con graph.py..."
-source $BASE_DIR/.venv/bin/activate
-python3 $BASE_DIR/graph.py $SET_TYPE $LOCAL_TMP/input $LOCAL_TMP/output $LOCAL_TMP/clean_batch.txt $LOCAL_TMP/backbone
+# ==============================================================================
+# EJECUCIÓN DE graph.py
+# ==============================================================================
+echo "Ejecutando graph.py..."
 
-# Sincronizamos resultados de vuelta al almacenamiento permanente
-echo "Guardando resultados en Scratch y limpiando nodo..."
-mkdir -p "$DATA_DIR/pt/$SET_TYPE/processed"
-rsync -a $LOCAL_TMP/output/processed/ "$DATA_DIR/pt/$SET_TYPE/processed/"
-rm -rf $LOCAL_TMP
+# Detectar y activar virtualenv si existe
+if [ -f "$BASE_DIR/.venv/bin/activate" ]; then
+    source "$BASE_DIR/.venv/bin/activate"
+elif [ -f "$BASE_DIR/venv/bin/activate" ]; then
+    source "$BASE_DIR/venv/bin/activate"
+fi
+
+if ! command -v python3 &> /dev/null; then
+    echo "Error: Python3 no encontrado"
+    exit 1
+fi
+
+python3 "$BASE_DIR/graph.py" "$SET_TYPE" "$LOCAL_TMP/input" "$LOCAL_TMP/output" "$LOCAL_TMP/clean_batch.txt" "$LOCAL_TMP/backbone"
+
+if [ $? -ne 0 ]; then
+    echo "Error: graph.py falló"
+    # NO eliminar $LOCAL_TMP para debugging
+    exit 1
+fi
+
+# ==============================================================================
+# COPIAR RESULTADOS
+# ==============================================================================
+echo "Guardando resultados..."
+
+# Ubicación destino depende del entorno
+if [ "$RUNNING_ENV" == "savio" ]; then
+    RESULTS_DIR="$DATA_DIR/pt/$SET_TYPE/processed"
+else
+    # En local, guardar en data/
+    RESULTS_DIR="$DATA_DIR/processed/$SET_TYPE"
+fi
+
+mkdir -p "$RESULTS_DIR"
+
+if [ -d "$LOCAL_TMP/output/processed" ]; then
+    rsync -a "$LOCAL_TMP/output/processed/" "$RESULTS_DIR/"
+    echo "Resultados guardados en: $RESULTS_DIR"
+else
+    echo "Advertencia: No hay resultados en $LOCAL_TMP/output/processed"
+fi
+
+# ==============================================================================
+# LIMPIEZA
+# ==============================================================================
+echo "Limpiando directorios temporales..."
+rm -rf "$LOCAL_TMP"
 
 echo "#=== Tarea completada ===#"
-
-##Pruebaaaa
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Batch completo"
