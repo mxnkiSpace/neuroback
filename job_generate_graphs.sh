@@ -77,7 +77,14 @@ extract_from_tar() {
     local filename=$1
     local dest_dir=$2
     local prefix=$3
-    local cnf_or_bb=$4  # "cnf" o "bb"
+    local cnf_or_bb=$4  # "cnf" o "backbone"
+    
+    # Determinar prefijo de directorio dentro del tar
+    # Para "backbone" usar "bb", para "cnf" usar "cnf"
+    local dir_prefix="$cnf_or_bb"
+    if [ "$cnf_or_bb" == "backbone" ]; then
+        dir_prefix="bb"
+    fi
     
     # Intenta en archivo suelto primero
     if [ -f "$DATA_DIR/${cnf_or_bb}/$SET_TYPE/$filename" ]; then
@@ -86,22 +93,139 @@ extract_from_tar() {
     fi
     
     # Intenta en TAR.GZ "orig" (sin prefijo dual)
-    local tar_file="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/${cnf_or_bb}_${prefix}.tar.gz"
+    local tar_file="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/${dir_prefix}_${prefix}.tar.gz"
     if [ -f "$tar_file" ]; then
+        # Intento 1: Buscar el archivo directamente en la raíz del TAR
         if tar -tzf "$tar_file" "$filename" &>/dev/null; then
             tar -xzf "$tar_file" -C "$dest_dir/" "$filename" 2>/dev/null
             if [ $? -eq 0 ]; then
                 return 0
             fi
         fi
+        
+        # Intento 2: Buscar dentro de la carpeta intermedia SIN ./
+        # (ej: cnf_pt/filename o bb_pt/filename)
+        local path_without_dot="${dir_prefix}_${prefix}/$filename"
+        if tar -tzf "$tar_file" "$path_without_dot" &>/dev/null; then
+            tar -xzf "$tar_file" -C "$dest_dir/" "$path_without_dot"
+            local extract_status=$?
+            if [ -f "$dest_dir/$path_without_dot" ]; then
+                mv "$dest_dir/$path_without_dot" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            fi
+        fi
+        
+        # Intento 3: Buscar dentro de la carpeta intermedia CON ./
+        # (ej: ./cnf_pt/filename o ./bb_pt/filename)
+        local path_with_dot="./${dir_prefix}_${prefix}/$filename"
+        if tar -tzf "$tar_file" "$path_with_dot" &>/dev/null; then
+            tar -xzf "$tar_file" -C "$dest_dir/" "$path_with_dot"
+            local extract_status=$?
+            # tar extrae con los ./ en la ruta, así que buscar así
+            if [ -f "$dest_dir/.${dir_prefix}_${prefix}/$filename" ]; then
+                mv "$dest_dir/.${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/.${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/.${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            elif [ -f "$dest_dir/${dir_prefix}_${prefix}/$filename" ]; then
+                mv "$dest_dir/${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            fi
+        fi
     fi
     
     # Intenta en TAR.GZ "dual"
-    local tar_file_dual="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/d_${cnf_or_bb}_${prefix}.tar.gz"
+    local tar_file_dual="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/d_${dir_prefix}_${prefix}.tar.gz"
     if [ -f "$tar_file_dual" ]; then
+        # Intento 1: Buscar el archivo directamente en la raíz del TAR
         if tar -tzf "$tar_file_dual" "$filename" &>/dev/null; then
             tar -xzf "$tar_file_dual" -C "$dest_dir/" "$filename" 2>/dev/null
             if [ $? -eq 0 ]; then
+                return 0
+            fi
+        fi
+        
+        # Intento 1b: Buscar con prefijo d_ en el archivo
+        local filename_with_d="d_$filename"
+        if tar -tzf "$tar_file_dual" "$filename_with_d" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$filename_with_d"
+            if [ -f "$dest_dir/$filename_with_d" ]; then
+                mv "$dest_dir/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
+                return 0
+            fi
+        fi
+        
+        # Intento 2: Buscar dentro de la carpeta intermedia SIN ./
+        # (ej: d_cnf_pt/filename o d_bb_pt/filename)
+        local path_without_dot="d_${dir_prefix}_${prefix}/$filename"
+        if tar -tzf "$tar_file_dual" "$path_without_dot" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_without_dot"
+            local extract_status=$?
+            if [ -f "$dest_dir/$path_without_dot" ]; then
+                mv "$dest_dir/$path_without_dot" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            fi
+        fi
+        
+        # Intento 2b: Buscar dentro de la carpeta con prefijo d_ en el archivo
+        local path_without_dot_d="d_${dir_prefix}_${prefix}/$filename_with_d"
+        if tar -tzf "$tar_file_dual" "$path_without_dot_d" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_without_dot_d"
+            if [ -f "$dest_dir/$path_without_dot_d" ]; then
+                mv "$dest_dir/$path_without_dot_d" "$dest_dir/$filename" 2>/dev/null
+                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            fi
+        fi
+        
+        # Intento 3: Buscar dentro de la carpeta intermedia CON ./
+        # (ej: ./d_cnf_pt/filename o ./d_bb_pt/filename)
+        local path_with_dot="./d_${dir_prefix}_${prefix}/$filename"
+        if tar -tzf "$tar_file_dual" "$path_with_dot" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_with_dot"
+            local extract_status=$?
+            if [ -f "$dest_dir/.d_${dir_prefix}_${prefix}/$filename" ]; then
+                mv "$dest_dir/.d_${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/.d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/.d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            elif [ -f "$dest_dir/d_${dir_prefix}_${prefix}/$filename" ]; then
+                mv "$dest_dir/d_${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
+                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            fi
+        fi
+        
+        # Intento 3b: Con prefijo d_ en el archivo CON ./
+        local path_with_dot_d="./d_${dir_prefix}_${prefix}/$filename_with_d"
+        if tar -tzf "$tar_file_dual" "$path_with_dot_d" &>/dev/null; then
+            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_with_dot_d"
+            if [ -f "$dest_dir/.d_${dir_prefix}_${prefix}/$filename_with_d" ]; then
+                mv "$dest_dir/.d_${dir_prefix}_${prefix}/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
+                if [ -d "$dest_dir/.d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/.d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
+                return 0
+            elif [ -f "$dest_dir/d_${dir_prefix}_${prefix}/$filename_with_d" ]; then
+                mv "$dest_dir/d_${dir_prefix}_${prefix}/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
+                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
+                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
+                fi
                 return 0
             fi
         fi
@@ -120,13 +244,15 @@ find_and_copy_backbone() {
     local prefix=$3
     
     # Variante 1: cnf_name.backbone.xz (ej: archivo.cnf.xz.backbone.xz)
+    # Agregar .backbone.xz al nombre completo del CNF
     local bb_name="${cnf_name}.backbone.xz"
     if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
         return 0
     fi
     
-    # Variante 2: sin el .cnf/.gz/.xz/.lzma/.bz2 inicial (ej: archivo.backbone.xz)
-    local base_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//' | sed 's/\.[a-z0-9]*$//')
+    # Variante 2: nombre del CNF sin la última extensión
+    # Ej: vlsat_49200_7490695.mcc2020_cnf.bz2 → vlsat_49200_7490695.mcc2020_cnf.backbone.xz
+    local base_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//')
     bb_name="${base_name}.backbone.xz"
     if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
         return 0
