@@ -1,5 +1,3 @@
-cnf_ft.tar.gz
-d_cnf_ft.tar.gz
 d_hcp_r26_26.cnf.xz
 hcp_r26_26.cnf.xz
 esawn_uw3.debugged.cnf.bz2
