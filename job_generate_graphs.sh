@@ -4,7 +4,7 @@
 #SBATCH --partition=savio3
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20        
+#SBATCH --cpus-per-task=12        
 #SBATCH --time=04:00:00           
 #SBATCH -o logs/nb_%j_%a.out
 
@@ -63,176 +63,98 @@ fi
 # Carpeta temporal en el disco local del nodo
 LOCAL_TMP="/tmp/nb_${SET_TYPE}_${SLURM_ARRAY_TASK_ID}"
 
+# Directorio donde se descomprimirán los tars (una sola vez, compartido)
+if [ "$RUNNING_ENV" == "savio" ]; then
+    EXTRACTED_DIR="$DATA_DIR/extracted/${SET_TYPE}"
+else
+    EXTRACTED_DIR="/tmp/nb_extracted_${SET_TYPE}"
+fi
+
 echo "Iniciando procesamiento del batch: $(basename $BATCH_FILE)"
-echo "Carpeta temporal: $LOCAL_TMP"
-
-# Preparamos entorno local en el nodo
-mkdir -p "$LOCAL_TMP/input" "$LOCAL_TMP/output" "$LOCAL_TMP/backbone"
+echo "Archivos extraídos en: $EXTRACTED_DIR"
+echo "Carpeta temporal de trabajo: $LOCAL_TMP"
 
 # ==============================================================================
-# FUNCIÓN: Buscar y extraer archivo de .tar.gz
-# Args: $1=archivo_a_buscar, $2=directorio_destino, $3=prefijo_tar (pt/ft)
+# FUNCIÓN: Descomprimir todos los tars (una sola vez por node)
 # ==============================================================================
-extract_from_tar() {
-    local filename=$1
-    local dest_dir=$2
-    local prefix=$3
-    local cnf_or_bb=$4  # "cnf" o "backbone"
-    
-    # Determinar prefijo de directorio dentro del tar
-    # Para "backbone" usar "bb", para "cnf" usar "cnf"
-    local dir_prefix="$cnf_or_bb"
-    if [ "$cnf_or_bb" == "backbone" ]; then
-        dir_prefix="bb"
-    fi
-    
-    # Intenta en archivo suelto primero
-    if [ -f "$DATA_DIR/${cnf_or_bb}/$SET_TYPE/$filename" ]; then
-        cp "$DATA_DIR/${cnf_or_bb}/$SET_TYPE/$filename" "$dest_dir/"
+decompress_all_tars() {
+    # Si ya está descomprimido, saltar
+    if [ -d "$EXTRACTED_DIR/cnf_${PREFIX}" ] && [ -d "$EXTRACTED_DIR/bb_${PREFIX}" ]; then
+        echo "[$(date '+%H:%M:%S')] ✓ Archivos ya descomprimidos, usando caché"
         return 0
     fi
     
-    # Intenta en TAR.GZ "orig" (sin prefijo dual)
-    local tar_file="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/${dir_prefix}_${prefix}.tar.gz"
-    if [ -f "$tar_file" ]; then
-        # Intento 1: Buscar el archivo directamente en la raíz del TAR
-        if tar -tzf "$tar_file" "$filename" &>/dev/null; then
-            tar -xzf "$tar_file" -C "$dest_dir/" "$filename" 2>/dev/null
-            if [ $? -eq 0 ]; then
-                return 0
-            fi
-        fi
-        
-        # Intento 2: Buscar dentro de la carpeta intermedia SIN ./
-        # (ej: cnf_pt/filename o bb_pt/filename)
-        local path_without_dot="${dir_prefix}_${prefix}/$filename"
-        if tar -tzf "$tar_file" "$path_without_dot" &>/dev/null; then
-            tar -xzf "$tar_file" -C "$dest_dir/" "$path_without_dot"
-            local extract_status=$?
-            if [ -f "$dest_dir/$path_without_dot" ]; then
-                mv "$dest_dir/$path_without_dot" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
-        
-        # Intento 3: Buscar dentro de la carpeta intermedia CON ./
-        # (ej: ./cnf_pt/filename o ./bb_pt/filename)
-        local path_with_dot="./${dir_prefix}_${prefix}/$filename"
-        if tar -tzf "$tar_file" "$path_with_dot" &>/dev/null; then
-            tar -xzf "$tar_file" -C "$dest_dir/" "$path_with_dot"
-            local extract_status=$?
-            # tar extrae con los ./ en la ruta, así que buscar así
-            if [ -f "$dest_dir/.${dir_prefix}_${prefix}/$filename" ]; then
-                mv "$dest_dir/.${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/.${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/.${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            elif [ -f "$dest_dir/${dir_prefix}_${prefix}/$filename" ]; then
-                mv "$dest_dir/${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
+    echo "[$(date '+%H:%M:%S')] Descomprimiendo archivos..."
+    mkdir -p "$EXTRACTED_DIR"
+    
+    # Descomprimir CNF originales
+    local cnf_tar="$DATA_DIR/cnf/$SET_TYPE/cnf_${PREFIX}.tar.gz"
+    if [ -f "$cnf_tar" ]; then
+        echo "  - Descomprimiendo: cnf_${PREFIX}.tar.gz (archivos originales)"
+        tar -xzf "$cnf_tar" -C "$EXTRACTED_DIR/"
     fi
     
-    # Intenta en TAR.GZ "dual"
-    local tar_file_dual="$DATA_DIR/${cnf_or_bb}/$SET_TYPE/d_${dir_prefix}_${prefix}.tar.gz"
-    if [ -f "$tar_file_dual" ]; then
-        # Intento 1: Buscar el archivo directamente en la raíz del TAR
-        if tar -tzf "$tar_file_dual" "$filename" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$filename" 2>/dev/null
-            if [ $? -eq 0 ]; then
-                return 0
-            fi
-        fi
-        
-        # Intento 1b: Buscar con prefijo d_ en el archivo
-        local filename_with_d="d_$filename"
-        if tar -tzf "$tar_file_dual" "$filename_with_d" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$filename_with_d"
-            if [ -f "$dest_dir/$filename_with_d" ]; then
-                mv "$dest_dir/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
-                return 0
-            fi
-        fi
-        
-        # Intento 2: Buscar dentro de la carpeta intermedia SIN ./
-        # (ej: d_cnf_pt/filename o d_bb_pt/filename)
-        local path_without_dot="d_${dir_prefix}_${prefix}/$filename"
-        if tar -tzf "$tar_file_dual" "$path_without_dot" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_without_dot"
-            local extract_status=$?
-            if [ -f "$dest_dir/$path_without_dot" ]; then
-                mv "$dest_dir/$path_without_dot" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
-        
-        # Intento 2b: Buscar dentro de la carpeta con prefijo d_ en el archivo
-        local path_without_dot_d="d_${dir_prefix}_${prefix}/$filename_with_d"
-        if tar -tzf "$tar_file_dual" "$path_without_dot_d" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_without_dot_d"
-            if [ -f "$dest_dir/$path_without_dot_d" ]; then
-                mv "$dest_dir/$path_without_dot_d" "$dest_dir/$filename" 2>/dev/null
-                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
-        
-        # Intento 3: Buscar dentro de la carpeta intermedia CON ./
-        # (ej: ./d_cnf_pt/filename o ./d_bb_pt/filename)
-        local path_with_dot="./d_${dir_prefix}_${prefix}/$filename"
-        if tar -tzf "$tar_file_dual" "$path_with_dot" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_with_dot"
-            local extract_status=$?
-            if [ -f "$dest_dir/.d_${dir_prefix}_${prefix}/$filename" ]; then
-                mv "$dest_dir/.d_${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/.d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/.d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            elif [ -f "$dest_dir/d_${dir_prefix}_${prefix}/$filename" ]; then
-                mv "$dest_dir/d_${dir_prefix}_${prefix}/$filename" "$dest_dir/" 2>/dev/null
-                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
-        
-        # Intento 3b: Con prefijo d_ en el archivo CON ./
-        local path_with_dot_d="./d_${dir_prefix}_${prefix}/$filename_with_d"
-        if tar -tzf "$tar_file_dual" "$path_with_dot_d" &>/dev/null; then
-            tar -xzf "$tar_file_dual" -C "$dest_dir/" "$path_with_dot_d"
-            if [ -f "$dest_dir/.d_${dir_prefix}_${prefix}/$filename_with_d" ]; then
-                mv "$dest_dir/.d_${dir_prefix}_${prefix}/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
-                if [ -d "$dest_dir/.d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/.d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            elif [ -f "$dest_dir/d_${dir_prefix}_${prefix}/$filename_with_d" ]; then
-                mv "$dest_dir/d_${dir_prefix}_${prefix}/$filename_with_d" "$dest_dir/$filename" 2>/dev/null
-                if [ -d "$dest_dir/d_${dir_prefix}_${prefix}" ]; then
-                    rmdir "$dest_dir/d_${dir_prefix}_${prefix}" 2>/dev/null
-                fi
-                return 0
-            fi
-        fi
+    # Descomprimir CNF duales
+    local cnf_dual_tar="$DATA_DIR/cnf/$SET_TYPE/d_cnf_${PREFIX}.tar.gz"
+    if [ -f "$cnf_dual_tar" ]; then
+        echo "  - Descomprimiendo: d_cnf_${PREFIX}.tar.gz (archivos duales)"
+        tar -xzf "$cnf_dual_tar" -C "$EXTRACTED_DIR/"
     fi
     
-    return 1  # No encontrado
+    # Descomprimir Backbones originales
+    local bb_tar="$DATA_DIR/backbone/$SET_TYPE/bb_${PREFIX}.tar.gz"
+    if [ -f "$bb_tar" ]; then
+        echo "  - Descomprimiendo: bb_${PREFIX}.tar.gz (backbones originales)"
+        tar -xzf "$bb_tar" -C "$EXTRACTED_DIR/"
+    fi
+    
+    # Descomprimir Backbones duales
+    local bb_dual_tar="$DATA_DIR/backbone/$SET_TYPE/d_bb_${PREFIX}.tar.gz"
+    if [ -f "$bb_dual_tar" ]; then
+        echo "  - Descomprimiendo: d_bb_${PREFIX}.tar.gz (backbones duales)"
+        tar -xzf "$bb_dual_tar" -C "$EXTRACTED_DIR/"
+    fi
+    
+    echo "[$(date '+%H:%M:%S')] ✓ Descompresión completada"
+    return 0
 }
+
+# ==============================================================================
+# FUNCIÓN: Copiar archivo desde directorio extraído o archivos sueltos
+# ==============================================================================
+copy_file() {
+    local filename=$1
+    local dest_dir=$2
+    local dir_type=$3  # "cnf" o "bb" (después de descomprimir)
+    
+    # Búsqueda 1: Archivos sueltos originales
+    if [ -f "$DATA_DIR/${dir_type}/$SET_TYPE/$filename" ]; then
+        cp "$DATA_DIR/${dir_type}/$SET_TYPE/$filename" "$dest_dir/"
+        return 0
+    fi
+    
+    # Búsqueda 2: Archivos descomprimidos en directorio extraído
+    # Formato: cnf_pt/filename o bb_pt/filename
+    local extracted_path="$EXTRACTED_DIR/${dir_type}_${PREFIX}/$filename"
+    if [ -f "$extracted_path" ]; then
+        cp "$extracted_path" "$dest_dir/"
+        return 0
+    fi
+    
+    # Búsqueda 3: Con prefijo d_ en archivos duales
+    # Formato: d_cnf_pt/d_filename o d_bb_pt/d_filename
+    local filename_with_d="d_$filename"
+    local extracted_path_d="$EXTRACTED_DIR/d_${dir_type}_${PREFIX}/$filename_with_d"
+    if [ -f "$extracted_path_d" ]; then
+        cp "$extracted_path_d" "$dest_dir/$filename"
+        return 0
+    fi
+    
+    return 1
+}
+
+# Preparamos entorno local en el nodo
+mkdir -p "$LOCAL_TMP/input" "$LOCAL_TMP/output" "$LOCAL_TMP/backbone"
 
 # ==============================================================================
 # FUNCIÓN: Buscar archivo backbone con fallbacks
@@ -243,22 +165,16 @@ find_and_copy_backbone() {
     local dest_dir=$2
     local prefix=$3
     
-    # Variante 1: cnf_name.backbone.xz (ej: archivo.cnf.xz.backbone.xz)
-    # Agregar .backbone.xz al nombre completo del CNF
-    local bb_name="${cnf_name}.backbone.xz"
-    if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
-        return 0
-    fi
-    
-    # Variante 2: nombre del CNF sin la última extensión
+    # Variante 1: cnf_name.backbone.xz 
     # Ej: vlsat_49200_7490695.mcc2020_cnf.bz2 → vlsat_49200_7490695.mcc2020_cnf.backbone.xz
-    local base_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//')
-    bb_name="${base_name}.backbone.xz"
-    if extract_from_tar "$bb_name" "$dest_dir" "$prefix" "backbone"; then
+    local bb_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//')
+    bb_name="${bb_name}.backbone.xz"
+    
+    if copy_file "$bb_name" "$dest_dir" "bb"; then
         return 0
     fi
     
-    echo "  [Advertencia] No se encontró backbone para: $cnf_name"
+    # No es crítico si no existe backbone
     return 1
 }
 
@@ -271,35 +187,47 @@ else
     PREFIX="ft"
 fi
 
-echo "Procesando archivos del batch (PREFIX=$PREFIX)..."
+# PASO 1: Descomprimir todos los tars (una sola vez por SET_TYPE)
+echo "[$(date '+%H:%M:%S')] PASO 1: Descomprimiendo archivos..."
+decompress_all_tars
+if [ $? -ne 0 ]; then
+    echo "Error: No se pudo descomprimir archivos"
+    exit 1
+fi
 
-# Leer archivo batch y procesar cada línea
+# PASO 2: Procesar batch
+echo "[$(date '+%H:%M:%S')] PASO 2: Procesando archivos del batch (PREFIX=$PREFIX)..."
+
 processed_count=0
 failed_count=0
 while IFS= read -r cnf_filename; do
-    # Trimear espacios y caracteres especiales (ej: ~)
+    # Trimear espacios y caracteres especiales
     cnf_filename=$(echo "$cnf_filename" | sed 's/^[[:space:]~]*//' | sed 's/[[:space:]]*$//')
     
     # Ignorar líneas vacías
     [ -z "$cnf_filename" ] && continue
     
-    echo "  ✓ Extrayendo: $cnf_filename"
-    
-    # Extraer CNF
-    if extract_from_tar "$cnf_filename" "$LOCAL_TMP/input" "$PREFIX" "cnf"; then
+    # Copiar CNF
+    if copy_file "$cnf_filename" "$LOCAL_TMP/input" "cnf"; then
+        echo "  ✓ $cnf_filename"
         ((processed_count++))
     else
-        echo "    [ERROR] No se encontró CNF: $cnf_filename"
+        echo "  ✗ $cnf_filename (NO ENCONTRADO)"
         ((failed_count++))
         continue
     fi
     
-    # Extraer backbone (no falla si no existe)
+    # Copiar backbone si existe
     find_and_copy_backbone "$cnf_filename" "$LOCAL_TMP/backbone" "$PREFIX"
     
 done < "$BATCH_FILE"
 
-echo "Resumen: $processed_count archivos procesados, $failed_count errores"
+echo "[$(date '+%H:%M:%S')] Resumen: $processed_count archivos procesados, $failed_count errores"
+
+if [ $processed_count -eq 0 ]; then
+    echo "Error: No se procesó ningún archivo"
+    exit 1
+fi
 
 # Crear archivo limpio para python
 cat "$BATCH_FILE" | grep -v '^$' > "$LOCAL_TMP/clean_batch.txt"
@@ -310,7 +238,7 @@ mkdir -p "$LOCAL_TMP/output/processed"
 # ==============================================================================
 # EJECUCIÓN DE graph.py
 # ==============================================================================
-echo "Ejecutando graph.py..."
+echo "[$(date '+%H:%M:%S')] PASO 3: Ejecutando graph.py..."
 
 # Detectar y activar virtualenv si existe
 if [ -f "$BASE_DIR/.venv/bin/activate" ]; then
@@ -335,7 +263,7 @@ fi
 # ==============================================================================
 # COPIAR RESULTADOS
 # ==============================================================================
-echo "Guardando resultados..."
+echo "[$(date '+%H:%M:%S')] PASO 4: Guardando resultados..."
 
 # Ubicación destino depende del entorno
 if [ "$RUNNING_ENV" == "savio" ]; then
@@ -357,8 +285,7 @@ fi
 # ==============================================================================
 # LIMPIEZA
 # ==============================================================================
-echo "Limpiando directorios temporales..."
+echo "[$(date '+%H:%M:%S')] PASO 5: Limpiando directorios temporales..."
 rm -rf "$LOCAL_TMP"
 
-echo "#=== Tarea completada ===#"
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] Batch completo"
+echo "[$(date '+%H:%M:%S')] ✓ Tarea completada exitosamente"

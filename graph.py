@@ -387,7 +387,7 @@ if __name__ == '__main__':
     
     print(f"[{mode.upper()}] Procesando batch {batch_file} con {len(task_lst)} archivos...")
     
-    with Pool(20) as p: 
+    with Pool(12) as p: 
         with tqdm(total=len(task_lst)) as pbar:
             for _ in p.imap_unordered(gen_pt_single, task_lst):
                 pbar.update()
