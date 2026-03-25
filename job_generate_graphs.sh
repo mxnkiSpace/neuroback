@@ -4,7 +4,7 @@
 #SBATCH --partition=savio3
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=12        
+#SBATCH --cpus-per-task=10        
 #SBATCH --time=04:00:00           
 #SBATCH -o logs/nb_%j_%a.out
 
@@ -67,7 +67,7 @@ LOCAL_TMP="/tmp/nb_${SET_TYPE}_${SLURM_ARRAY_TASK_ID}"
 if [ "$RUNNING_ENV" == "savio" ]; then
     EXTRACTED_DIR="$DATA_DIR/extracted/${SET_TYPE}"
 else
-    EXTRACTED_DIR="/tmp/nb_extracted_${SET_TYPE}"
+    EXTRACTED_DIR="$HOME/.cache/neuroback_extracted/${SET_TYPE}"
 fi
 
 echo "Iniciando procesamiento del batch: $(basename $BATCH_FILE)"
@@ -75,7 +75,7 @@ echo "Archivos extraídos en: $EXTRACTED_DIR"
 echo "Carpeta temporal de trabajo: $LOCAL_TMP"
 
 # ==============================================================================
-# FUNCIÓN: Descomprimir todos los tars (una sola vez por node)
+# FUNCIÓN: Descomprimir todos los tars
 # ==============================================================================
 decompress_all_tars() {
     # Si ya está descomprimido, saltar
@@ -143,8 +143,15 @@ copy_file() {
     
     # Búsqueda 3: Con prefijo d_ en archivos duales
     # Formato: d_cnf_pt/d_filename o d_bb_pt/d_filename
-    local filename_with_d="d_$filename"
-    local extracted_path_d="$EXTRACTED_DIR/d_${dir_type}_${PREFIX}/$filename_with_d"
+    # Detectar si el archivo ya tiene prefijo d_ para evitar d_d_
+    if [[ "$filename" == d_* ]]; then
+        # Filename ya tiene prefijo d_, usar tal cual
+        local extracted_path_d="$EXTRACTED_DIR/d_${dir_type}_${PREFIX}/$filename"
+    else
+        # Agregar prefijo d_
+        local filename_with_d="d_$filename"
+        local extracted_path_d="$EXTRACTED_DIR/d_${dir_type}_${PREFIX}/$filename_with_d"
+    fi
     if [ -f "$extracted_path_d" ]; then
         cp "$extracted_path_d" "$dest_dir/$filename"
         return 0
