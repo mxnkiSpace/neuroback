@@ -63,12 +63,8 @@ fi
 # Carpeta temporal en el disco local del nodo
 LOCAL_TMP="/tmp/nb_${SET_TYPE}_${SLURM_ARRAY_TASK_ID}"
 
-# Directorio donde se descomprimirán los tars (una sola vez, compartido)
-if [ "$RUNNING_ENV" == "savio" ]; then
-    EXTRACTED_DIR="$DATA_DIR/extracted/${SET_TYPE}"
-else
-    EXTRACTED_DIR="$HOME/.cache/neuroback_extracted/${SET_TYPE}"
-fi
+# Directorio donde se descomprimirán los tars (dentro del disco local del nodo para mejor rendimiento)
+EXTRACTED_DIR="$LOCAL_TMP/extracted"
 
 echo "Iniciando procesamiento del batch: $(basename $BATCH_FILE)"
 echo "Archivos extraídos en: $EXTRACTED_DIR"
@@ -78,12 +74,6 @@ echo "Carpeta temporal de trabajo: $LOCAL_TMP"
 # FUNCIÓN: Descomprimir todos los tars
 # ==============================================================================
 decompress_all_tars() {
-    # Si ya está descomprimido, saltar
-    if [ -d "$EXTRACTED_DIR/cnf_${PREFIX}" ] && [ -d "$EXTRACTED_DIR/bb_${PREFIX}" ]; then
-        echo "[$(date '+%H:%M:%S')] ✓ Archivos ya descomprimidos, usando caché"
-        return 0
-    fi
-    
     echo "[$(date '+%H:%M:%S')] Descomprimiendo archivos..."
     mkdir -p "$EXTRACTED_DIR"
     
@@ -268,7 +258,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # ==============================================================================
-# COPIAR RESULTADOS
+# COPIAR RESULTADOS (comprimidos)
 # ==============================================================================
 echo "[$(date '+%H:%M:%S')] PASO 4: Guardando resultados..."
 
@@ -283,7 +273,22 @@ fi
 mkdir -p "$RESULTS_DIR"
 
 if [ -d "$LOCAL_TMP/output/processed" ]; then
-    rsync -a "$LOCAL_TMP/output/processed/" "$RESULTS_DIR/"
+    # Comprimir resultados en archivo tar.gz
+    echo "[$(date '+%H:%M:%S')] Comprimiendo resultados..."
+    RESULTS_ARCHIVE="$LOCAL_TMP/results_batch_${SLURM_ARRAY_TASK_ID}.tar.gz"
+    tar -czf "$RESULTS_ARCHIVE" -C "$LOCAL_TMP/output/processed" . 2>/dev/null
+    
+    # Copiar solo el archivo comprimido
+    echo "[$(date '+%H:%M:%S')] Copiando archivo comprimido..."
+    cp "$RESULTS_ARCHIVE" "$RESULTS_DIR/"
+    
+    # Descomprimir en destino
+    echo "[$(date '+%H:%M:%S')] Descomprimiendo en destino..."
+    tar -xzf "$RESULTS_DIR/$(basename $RESULTS_ARCHIVE)" -C "$RESULTS_DIR/" 2>/dev/null
+    
+    # Eliminar el archivo comprimido del destino
+    rm "$RESULTS_DIR/$(basename $RESULTS_ARCHIVE)"
+    
     echo "Resultados guardados en: $RESULTS_DIR"
 else
     echo "Advertencia: No hay resultados en $LOCAL_TMP/output/processed"
