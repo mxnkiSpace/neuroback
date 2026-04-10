@@ -2,6 +2,7 @@ import os
 import sys
 import shutil
 import torch
+import gc  # ← NUEVO: Para forzar limpieza de memoria
 from torch_geometric.data import Data
 from multiprocessing import Pool
 import time
@@ -111,7 +112,7 @@ def gen_pt_single(arg_lst):
     
     assert(os.path.isfile(dc_cnf_path))
 
-    data_lst, wcc = cnf_to_pt_bipartite(dc_cnf_path, dc_backbone_path)
+    data_lst = cnf_to_pt_bipartite(dc_cnf_path, dc_backbone_path)  # ← CAMBIO: No retornar wcc
 
     assert(os.path.isfile(dc_cnf_path))
 
@@ -137,6 +138,9 @@ def gen_pt_single(arg_lst):
                 os.makedirs(tmp_dir_path, exist_ok=True)
             tmp_path = tmp_dir_path + "/" + cnf_name + f".c-{i}.pt"
             torch.save(data, tmp_path)
+    
+    # ← NUEVO: Forzar limpieza de memoria al final de procesar cada archivo
+    gc.collect()
 
 def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
     start_time = time.time()
@@ -153,7 +157,7 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
 
         if len(backbone) == 0:
             print(f"warning: no backbone in the file: {backbond_file_path}")
-            return None, None
+            return None
 
     X = []
     v2n = {}
@@ -162,7 +166,7 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
         for line in f:
             if time.time() - start_time > timelim:
                 print("warning: timeout while reading cnf")
-                return None, None
+                return None
 
             line = line.strip()
 
@@ -201,7 +205,7 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
         for line in f:
             if time.time() - start_time > timelim:
                 print("warning: timeout while reading cnf")
-                return None, None
+                return None
 
             line = line.strip()
 
@@ -236,23 +240,27 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
 
     if len(y) > 0 and 0 not in y and 1 not in y:
         print(f"warning: no backbone in the data: {backbond_file_path}", flush=True)
-        return None, None
+        return None
 
     wcc = None
     ds = DisJointSets(len(X))
     for idx, edge in enumerate(edge_index):
         if time.time() - start_time > timelim:
             print("warning: timeout while constructing disjoint sets")
-            return None, None
+            return None
 
         from_node, to_node = edge[0], edge[1]
         ds.union(from_node, to_node, edge_attr[idx])
     wcc, wcc_edges = ds.get_wcc()
+    
+    # ← NUEVO: Limpiar DisJointSets inmediatamente después de usarlo
+    del ds
+    
     assert(len(wcc) > 0 and len(wcc_edges) > 0)
 
     if time.time() - start_time > timelim:
         print("warning: timeout after solving wcc")
-        return None, None
+        return None
 
     data_lst = []
     if len(wcc) == 1:
@@ -286,7 +294,7 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
         for root, c in wcc.items():
             if time.time() - start_time > timelim:
                 print("warning: timeout while enumerating wcc")
-                return None, None
+                return None
 
             if len(c) == 1:
                 continue
@@ -356,7 +364,11 @@ def cnf_to_pt_bipartite(cnf_file_path, backbond_file_path, timelim=1000):
 
     if len(data_lst) == 0:
         print(f"warning: no data object in the data_lst: {backbond_file_path}", flush=True)
-    return data_lst, wcc
+    
+    # ← NUEVO: Limpiar estructuras intermedias grandes que ya no se necesitan
+    del X, edge_index, edge_attr, v2n, backbone, wcc, wcc_edges
+    
+    return data_lst  # ← CAMBIO: Solo retornar data_lst, no wcc
 
 
 if __name__ == '__main__':
@@ -387,9 +399,10 @@ if __name__ == '__main__':
     
     print(f"[{mode.upper()}] Procesando batch {batch_file} con {len(task_lst)} archivos...")
     
-    with Pool(10) as p: 
+    # ← CAMBIO: Pool reducido de 10 a 6 workers, con chunksize=2
+    with Pool(6) as p: 
         with tqdm(total=len(task_lst)) as pbar:
-            for _ in p.imap_unordered(gen_pt_single, task_lst):
+            for _ in p.imap_unordered(gen_pt_single, task_lst, chunksize=2):
                 pbar.update()
 
     print(f"Batch {batch_file} finalizado correctamente.")
