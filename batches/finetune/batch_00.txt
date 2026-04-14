@@ -483,16 +483,3 @@ smtlib-qfbv-aigs-bin_libmsrpc_vc1225297-tseitin.cnf.lzma
 itox_vc909.cnf.bz2
 d_ibm-2004-1_11-k80.cnf.xz
 d_UR-15-10p1.cnf.xz
-d_IBM_FV_2004_rule_batch_22_SAT_dat.k100.cnf.xz
-g2-UCG-20-5p1.cnf.xz
-b10b36961f097af77483deacff313300-newton_3_6_false-unreach-call.i.cnf.xz
-d_ibm-2002-05r-k90.cnf.xz
-smtlib-qfbv-aigs-bin_libsmbclient_vc1225238-tseitin.cnf.lzma
-atco_enc1_opt1_15_240.cnf.lzma
-g2-ak128modasbg1msisc.cnf.xz
-d_g2-ak128modasbg1msisc.cnf.xz
-ndist.b.27485.cnf.lzma
-d_63619a3eb9b531e7d963836a832f6ea9-course0.12_2018_3_1.cnf.xz
-63619a3eb9b531e7d963836a832f6ea9-course0.12_2018_3_1.cnf.xz
-d_dated-10-15-s.cnf.xz
-d_dated-5-17-s.cnf.xz
