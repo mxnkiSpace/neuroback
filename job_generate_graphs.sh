@@ -278,18 +278,11 @@ if [ -d "$LOCAL_TMP/output/processed" ]; then
     RESULTS_ARCHIVE="$LOCAL_TMP/results_batch_${SLURM_ARRAY_TASK_ID}.tar.gz"
     tar -czf "$RESULTS_ARCHIVE" -C "$LOCAL_TMP/output/processed" . 2>/dev/null
     
-    # Copiar solo el archivo comprimido
+    # Copiar archivo comprimido al destino
     echo "[$(date '+%H:%M:%S')] Copiando archivo comprimido..."
     cp "$RESULTS_ARCHIVE" "$RESULTS_DIR/"
     
-    # Descomprimir en destino
-    echo "[$(date '+%H:%M:%S')] Descomprimiendo en destino..."
-    tar -xzf "$RESULTS_DIR/$(basename $RESULTS_ARCHIVE)" -C "$RESULTS_DIR/" 2>/dev/null
-    
-    # Eliminar el archivo comprimido del destino
-    rm "$RESULTS_DIR/$(basename $RESULTS_ARCHIVE)"
-    
-    echo "Resultados guardados en: $RESULTS_DIR"
+    echo "Resultados guardados en: $RESULTS_DIR/$(basename $RESULTS_ARCHIVE)"
 else
     echo "Advertencia: No hay resultados en $LOCAL_TMP/output/processed"
 fi
