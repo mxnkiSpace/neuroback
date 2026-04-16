@@ -5,6 +5,10 @@ import torch
 import gc  # ← NUEVO: Para forzar limpieza de memoria
 from torch_geometric.data import Data
 from multiprocessing import Pool
+try:
+    from multiprocessing.pool import WorkerLostError 
+except ImportError:
+    WorkerLostError = OSError  
 import time
 from tqdm import tqdm
 import pickle
@@ -399,10 +403,13 @@ if __name__ == '__main__':
     
     print(f"[{mode.upper()}] Procesando batch {batch_file} con {len(task_lst)} archivos...")
     
-    # ← CAMBIO: Pool reducido de 10 a 6 workers, con chunksize=2
-    with Pool(6) as p: 
+    with Pool(6, maxtasksperchild=1) as p: 
         with tqdm(total=len(task_lst)) as pbar:
-            for _ in p.imap_unordered(gen_pt_single, task_lst, chunksize=2):
-                pbar.update()
+            try:
+                for _ in p.imap_unordered(gen_pt_single, task_lst, chunksize=1):
+                    pbar.update()
+            except WorkerLostError as e:
+                print(f"warning: worker killed (OOM?): {e}")
 
     print(f"Batch {batch_file} finalizado correctamente.")
+

@@ -11,3 +11,5 @@ d_63619a3eb9b531e7d963836a832f6ea9-course0.12_2018_3_1.cnf.xz
 63619a3eb9b531e7d963836a832f6ea9-course0.12_2018_3_1.cnf.xz
 d_dated-10-15-s.cnf.xz
 d_dated-5-17-s.cnf.xz
+d_5bbfd1950de8bad7bc695b741b964153-exams_flat_0.04_2017_9.cnf.xz
+5bbfd1950de8bad7bc695b741b964153-exams_flat_0.04_2017_9.cnf.xz

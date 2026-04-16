@@ -134,8 +134,6 @@ d_60632fce4132ceacfddb8d0764befd96-courses0.2_2017_9.cnf.xz
 01-integer-programming-20-30-40.cnf.xz
 d_01-integer-programming-20-30-40.cnf.xz
 transport-transport-city-sequential-25nodes-1000size-3degree-100mindistance-3trucks-10packages-2008seed.050-NOTKNOWN.cnf.lzma
-d_5bbfd1950de8bad7bc695b741b964153-exams_flat_0.04_2017_9.cnf.xz
-5bbfd1950de8bad7bc695b741b964153-exams_flat_0.04_2017_9.cnf.xz
 AProVE11-14.cnf.lzma
 SAT_dat.k95.cnf.lzma
 UCG-20-10p1.cnf.gz
