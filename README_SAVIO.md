@@ -119,7 +119,7 @@ pip install -r requirements.txt
 ### Prueba un batch
 
 ```bash
-bash job_generate_graphs.sh validation 0
+bash job_generate_graphs.sh validation 0s
 bash job_generate_graphs.sh pretrain 5
 ```
 
