@@ -118,8 +118,13 @@ copy_file() {
     local dir_type=$3  # "cnf" o "bb" (después de descomprimir)
     
     # Búsqueda 1: Archivos sueltos originales
-    if [ -f "$DATA_DIR/${dir_type}/$SET_TYPE/$filename" ]; then
-        cp "$DATA_DIR/${dir_type}/$SET_TYPE/$filename" "$dest_dir/"
+    # Nota: el dir_type "bb" corresponde al directorio "backbone/" en data/
+    local src_subdir="$dir_type"
+    if [ "$dir_type" == "bb" ]; then
+        src_subdir="backbone"
+    fi
+    if [ -f "$DATA_DIR/${src_subdir}/$SET_TYPE/$filename" ]; then
+        cp "$DATA_DIR/${src_subdir}/$SET_TYPE/$filename" "$dest_dir/"
         return 0
     fi
     
@@ -162,15 +167,21 @@ find_and_copy_backbone() {
     local dest_dir=$2
     local prefix=$3
     
-    # Variante 1: cnf_name.backbone.xz 
-    # Ej: vlsat_49200_7490695.mcc2020_cnf.bz2 → vlsat_49200_7490695.mcc2020_cnf.backbone.xz
-    local bb_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//')
-    bb_name="${bb_name}.backbone.xz"
-    
+    # Variante 1: cnf_name + .backbone.xz (preserva extensión — formato validation local)
+    # Ej: 002-80-4.cnf.xz → 002-80-4.cnf.xz.backbone.xz
+    local bb_name="${cnf_name}.backbone.xz"
     if copy_file "$bb_name" "$dest_dir" "bb"; then
         return 0
     fi
-    
+
+    # Variante 2: strip última extensión (formato pretrain/finetune en tarballs)
+    # Ej: vlsat_49200_7490695.mcc2020_cnf.bz2 → vlsat_49200_7490695.mcc2020_cnf.backbone.xz
+    bb_name=$(echo "$cnf_name" | sed 's/\.[a-z0-9]*$//')
+    bb_name="${bb_name}.backbone.xz"
+    if copy_file "$bb_name" "$dest_dir" "bb"; then
+        return 0
+    fi
+
     # No es crítico si no existe backbone
     return 1
 }
