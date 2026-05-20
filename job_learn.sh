@@ -12,9 +12,6 @@
 # ==============================================================================
 # USO (local):   bash job_learn.sh <pretrain|finetune>
 # USO (cluster): sbatch job_learn.sh <pretrain|finetune>
-#
-# NOTA: SBATCH options (time, gres, cpus-per-task) son placeholders. Ajustar
-#       una vez tengamos referencia de tiempo por época con un batch en local.
 # ==============================================================================
 
 SET_TYPE=$1
