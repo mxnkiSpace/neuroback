@@ -18,6 +18,7 @@ import time
 import sys
 import random
 import numpy as np
+import glob
 from multiprocessing import Pool
 
 
@@ -37,7 +38,9 @@ if hyper_params["pretrain"]:
 	hyper_params["epoch_num"] = 40
 	hyper_params["batch_size"] = 2
 	hyper_params["log_dir"] = "./log/pretrain"
-	hyper_params["checkpoint_path"] = None
+	_ckpts = sorted(glob.glob("./models/pretrain/pretrain-[0-9]*.ptg"),
+	                key=lambda p: int(p.split('-')[-1].replace('.ptg', '')))
+	hyper_params["checkpoint_path"] = _ckpts[-1] if _ckpts else None
 	hyper_params["dataset_path"] = "./data/pt/pretrain"
 
 else:
@@ -281,7 +284,12 @@ if hyper_params["checkpoint_path"] is not None and os.path.isfile(hyper_params["
 
 
 # training loop
-for epoch in range(hyper_params["epoch_num"]):
+start_epoch = 0
+if hyper_params["pretrain"] and hyper_params["checkpoint_path"]:
+	start_epoch = int(hyper_params["checkpoint_path"].split('-')[-1].replace('.ptg', '')) + 1
+	print(f"Resuming pretrain from epoch {start_epoch}")
+
+for epoch in range(start_epoch, hyper_params["epoch_num"]):
 	print(f"epoch {epoch}\ntrain:")
 	with open(hyper_params["log_dir"] + f"/gnn-{epoch}.log", "w") as log_file:
 
